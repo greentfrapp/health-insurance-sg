@@ -1,6 +1,6 @@
 <template>
   <div class="flex p-10 max-h-screen justify-center w-screen">
-    <div class="flex w-full gap-4 w-[1280px] max-w-full">
+    <div class="flex w-full gap-4 max-w-full" :style="{width: '1280px'}">
       <div class="shrink-0 flex flex-col w-[65ch] space-y-4">
         <div class="history-container shrink grow space-y-4 overflow-auto px-2" ref="historyContainer">
           <div v-for="step in store.history">
