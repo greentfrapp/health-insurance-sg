@@ -24,8 +24,9 @@
         </div>
         <div class="flex border-2 border-neutral-300 p-1 rounded-lg">
           <input type="text" v-model="query"
+            ref="inputBox"
             class="grow px-2 py-1"
-            placeholder="What am I covered for if I am warded in the hospital?"
+            placeholder="Press '/' to start typing"
             @keyup.enter="submitQuery" />
           <div class="flex gap-1">
             <button @click="submitQuery"
@@ -48,7 +49,7 @@
 </style>
 <script setup lang="ts">
 import { initAPI, queryAPI, streamAPI } from '@/utils/api'
-import { nextTick, onMounted, ref } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { parseResponse } from '@/utils/utils'
 import { APIResponse } from '@/utils/types'
 import { useStore } from '@/utils/store'
@@ -60,7 +61,7 @@ import SettingsMenu from './SettingsMenu.vue'
 const store = useStore()
 
 const documents = ref(['Enhanced IncomeShield Brochure.pdf'])
-const query = ref('What is NTUC IncomeShield\'s coverage for non-standard rooms in a private hospital?')
+const query = ref('')
 const loading = ref(false)
 
 const streamingResponse = ref('')
@@ -132,7 +133,22 @@ function parseStreamResponse(stream: string) {
   return stream
 }
 
+const inputBox = ref<null|HTMLInputElement>(null)
+function handleSlash(e: KeyboardEvent) {
+  if (e.key === '/' && inputBox.value) {
+    if (document.activeElement !== inputBox.value) {
+      e.preventDefault()
+      inputBox.value.focus()
+    }
+  }
+}
+
 onMounted(() => {
   initAPI()
+  document.addEventListener('keypress', handleSlash)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keypress', handleSlash)
 })
 </script>
