@@ -67,13 +67,15 @@ const streamingResponse = ref('')
 const finalResponse = ref<null|APIResponse>(null)
 const historyContainer = ref<null|HTMLDivElement>(null)
 async function submitQuery() {
+  const queryStr = query.value
+  query.value = ''
   store.history.push({
     id: uuidv4(),
     role: 'user',
-    value: query.value,
+    value: queryStr,
   })
   loading.value = true
-  const stream = await streamAPI(query.value)
+  const stream = await streamAPI(queryStr)
   while (true) {
     const result = await stream.read()
     if (result?.done) break
@@ -111,6 +113,7 @@ function parseStreamResponse(stream: string) {
   const patterns = [
     'Answer:',
     'Action Desc:',
+    'Action Output:',
     'Final Response:',
     'Thought:',
   ]
@@ -127,10 +130,6 @@ function parseStreamResponse(stream: string) {
     }
   }
   return stream
-}
-
-function exportHistory() {
-  store.exportHistory()
 }
 
 onMounted(() => {
