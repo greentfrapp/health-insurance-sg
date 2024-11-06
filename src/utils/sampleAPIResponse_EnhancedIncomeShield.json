@@ -1,0 +1,87 @@
+{
+    "question": "What is NTUC IncomeShield's coverage for non-standard rooms in a private hospital?",
+    "text": "The provided text from the NTUC IncomeShield brochure details coverage for various ward classes in private hospitals, but doesn't specify coverage for non-standard rooms <cite><doc>Enhanced2024 pages 16-17</doc><doc>Enhanced2024 pages 17-19</doc><doc>Enhanced2024 pages 12-15</doc></cite>.  Deductibles for private hospital inpatient care vary based on ward class and the insured's age <cite><doc>Enhanced2024 pages 16-17 <quote>quote1</quote><quote>quote2</quote></doc></cite>.  For those 80 or younger, deductibles range from $1,500 (Ward C) to $3,500 (Ward A), increasing to $2,250 and $5,250 respectively for those over 80 <cite><doc>Enhanced2024 pages 16-17 <quote>quote1</quote><quote>quote2</quote></doc></cite>.  Pro-ration factors apply to private hospital treatment <cite><doc>Enhanced2024 pages 16-17 <quote>quote3</quote></doc></cite>.  While ward class distinctions suggest different coverage levels based on room type,  specific details on non-standard rooms are absent <cite><doc>Enhanced2024 pages 17-19</doc></cite>.",
+    "references": [
+      {
+        "id": "Enhanced2024 pages 16-17",
+        "filepath": "Enhanced IncomeShield Brochure.pdf",
+        "value": "\"Enhanced IncomeShield Brochure\" *Income Insurance*, 1 Sept. 2024.\n",
+        "pages": [
+          16,
+          17
+        ],
+        "quotes": [
+          {
+            "quote": "Deductible for each policy year for an insured aged 80 years or below next birthdayu\n\nInpatient\n− Private hospital or private medical\n   institution or emergency overseas                $3,500             $3,500             $2,500",
+            "point": "Deductibles for private hospital inpatient care vary based on age and ward class."
+          },
+          {
+            "quote": "Deductible for each policy year for an insured aged over 80 years at next birthdayu\n\nInpatient\n− Private hospital or private medical\n   institution or emergency overseas                $5,250             $5,250             $3,750",
+            "point": "Higher deductibles apply for those over 80."
+          },
+          {
+            "quote": "Pro-ration factorq                                             SG/PR/FRr\n\nInpatient\n − Private hospital or private medical\n    institution or emergency overseas           Does not apply        65%            50%",
+            "point": "Pro-ration factors (65% for Advantage, 50% for Basic) apply to private hospital inpatient treatment."
+          },
+          {
+            "quote": "Final expenses benefit\n                                                          $5,000                       $3,000\n (waiver of co-insurance and deductible)p",
+            "point": "Final expenses benefit is also provided."
+          }
+        ]
+      },
+      {
+        "id": "Enhanced2024 pages 17-19",
+        "filepath": "Enhanced IncomeShield Brochure.pdf",
+        "value": "\"Enhanced IncomeShield Brochure\" *Income Insurance*, 1 Sept. 2024.\n",
+        "pages": [
+          17,
+          18,
+          19
+        ],
+        "quotes": [
+          {
+            "quote": "- Ward class B2 or B2+                         $3,000             $3,000             $3,000\n    - Ward class B1                               $3,750             $3,750             $3,750\n    - Ward class A                                $5,250             $5,250             $3,750",
+            "point": "The excerpt lists coverage amounts for different ward classes (B2/B2+, B1, A), implying varying coverage based on room type."
+          },
+          {
+            "quote": "Day surgery or short-stay ward\n− Subsidised                                    $3,000             $3,000             $3,000\n− Non-subsidised                                $5,250             $5,250             $3,750",
+            "point": "Coverage is differentiated for subsidized and non-subsidized day surgery/short-stay wards."
+          },
+          {
+            "quote": "Co-insurance                                            10%",
+            "point": "A 10% co-insurance applies to the listed coverage amounts."
+          },
+          {
+            "quote": "Limit in each policy year                        $1,500,000          $500,000           $250,000\n\nLimit in each lifetime                                                 Unlimited",
+            "point": "Annual and lifetime limits on coverage are specified, with lifetime limits varying depending on the plan."
+          }
+        ]
+      },
+      {
+        "id": "Enhanced2024 pages 12-15",
+        "filepath": "Enhanced IncomeShield Brochure.pdf",
+        "value": "\"Enhanced IncomeShield Brochure\" *Income Insurance*, 1 Sept. 2024.\n",
+        "pages": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "quotes": [
+          {
+            "quote": "Enhanced IncomeShield is available as a MediSave-approved Integrated Shield Plan for the insured who is a Singapore Citizen or a Singapore Permanent Resident.",
+            "point": "Eligibility for Enhanced IncomeShield is limited to Singapore Citizens and Permanent Residents."
+          },
+          {
+            "quote": "Ward entitlement\n                                               Preferred         Advantage            Basic\n                                         Standard room in                        Restructured\n                                                               Restructured\n                                               private hospital                        hospital for ward\n Ward entitlement                                                hospital for ward\n                                           or private medical                          class B1 and\n                                                                    class A and below\n                                                    institution                           below",
+            "point": "The excerpt shows ward entitlement options for Enhanced IncomeShield, mentioning standard rooms in private hospitals and restructured hospitals, but doesn't detail coverage for non-standard rooms."
+          },
+          {
+            "quote": "Daily ward and treatment charges (each day)ª\n  -  Normal ward\n  -  Intensive care unit ward",
+            "point": "The plan covers daily ward charges, but specifics regarding non-standard rooms are absent."
+          }
+        ]
+      }
+    ],
+    "url": "Final IncomeShield policy conditions 1 Sep 2024.pdf"
+  }
