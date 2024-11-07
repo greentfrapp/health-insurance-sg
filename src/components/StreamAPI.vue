@@ -22,19 +22,27 @@
             {{ streamingResponse }}
           </div>
         </div>
-        <div class="flex border-2 border-neutral-300 p-1 rounded-lg">
-          <input type="text" v-model="query"
-            ref="inputBox"
-            class="grow px-2 py-1"
-            placeholder="Press '/' to start typing"
-            @keyup.enter="submitQuery" />
-          <div class="flex gap-1">
-            <button @click="submitQuery"
-              :disabled="!query.length || loading"
-              class="px-4 py-1 rounded-md bg-neutral-800 text-neutral-50 disabled:bg-neutral-100 disabled:text-neutral-300">
-              {{ loading ? 'Loading' : 'Submit' }}
-            </button>
-            <SettingsMenu />
+        <div class="flex border-2 border-neutral-300 p-1 rounded-lg relative">
+          <div class="flex w-full" :class="[store.serverIsAlive ? '' : 'invisible']">
+            <input type="text" v-model="query"
+              ref="inputBox"
+              class="grow px-2 py-1"
+              placeholder="Press '/' to start typing"
+              @keyup.enter="submitQuery" />
+            <div class="flex gap-1">
+              <button @click="submitQuery"
+                :disabled="!query.length || loading"
+                class="px-4 py-1 rounded-md bg-neutral-800 text-neutral-50 disabled:bg-neutral-100 disabled:text-neutral-300">
+                {{ loading ? 'Loading' : 'Submit' }}
+              </button>
+              <SettingsMenu />
+            </div>
+          </div>
+          <div v-if="!store.serverIsAlive" @click="store.pingStatus"
+            class="w-full h-full absolute top-0 left-0 flex items-center px-4 gap-2 cursor-pointer">
+            <ArrowPathIcon v-if="store.connectingToServer" class="w-4 h-4 animate-spin" />
+            <ExclamationCircleIcon v-else class="w-4 h-4 text-red-500" />
+            {{ store.connectingToServer ? 'Connecting...' : store.serverIsAlive ? 'Connected' : 'Server not found, click to retry' }}
           </div>
         </div>
       </div>
@@ -56,6 +64,7 @@ import { useStore } from '@/utils/store'
 import PDFContainer from './PDFContainer.vue'
 import { v4 as uuidv4 } from 'uuid'
 import SettingsMenu from './SettingsMenu.vue'
+import { ArrowPathIcon, ExclamationCircleIcon } from '@heroicons/vue/20/solid'
 
 const store = useStore()
 

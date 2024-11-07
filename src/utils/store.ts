@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 import { APIResponse, ConversationStep } from './types'
-import { initAPI } from './api'
+import { initAPI, statusAPI } from './api'
 
 export const useStore = defineStore(
   'store', {
     state: () => ({
+      connectingToServer: false,
       serverIsAlive: false,
       serverHistoryLength: 0,
       history: [] as ConversationStep[],
@@ -55,6 +56,29 @@ export const useStore = defineStore(
         initAPI()
         this.history = []
       },
+      async pingStatus() {
+        if (this.serverIsAlive) return
+        this.connectingToServer = true
+        const tries = 3
+        for (let i=0; i<tries; i++) {
+          try {
+            const status = await statusAPI()
+            this.serverIsAlive = status.ok
+            if (!status.ok) {
+              this.serverHistoryLength = 0
+            } else {
+              const statusJSON = await status.json()
+              this.serverHistoryLength = statusJSON["history_length"]
+            }
+          } catch {
+            this.serverIsAlive = false
+            this.serverHistoryLength = 0
+          }
+          if (this.serverIsAlive) break
+          await new Promise(r => setTimeout(r, 1000))
+        }
+        this.connectingToServer = false
+      }
     },
   }
 )
