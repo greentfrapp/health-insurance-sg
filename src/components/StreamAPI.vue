@@ -48,13 +48,12 @@
 }
 </style>
 <script setup lang="ts">
-import { initAPI, queryAPI, streamAPI } from '@/utils/api'
+import { streamAPI } from '@/utils/api'
 import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { parseResponse } from '@/utils/utils'
 import { APIResponse } from '@/utils/types'
 import { useStore } from '@/utils/store'
 import PDFContainer from './PDFContainer.vue'
-import sampleAPIResponse from '@/utils/sampleAPIResponse_EnhancedIncomeShield.json'
 import { v4 as uuidv4 } from 'uuid'
 import SettingsMenu from './SettingsMenu.vue'
 
@@ -144,7 +143,6 @@ function handleSlash(e: KeyboardEvent) {
 }
 
 onMounted(() => {
-  initAPI()
   document.addEventListener('keypress', handleSlash)
 })
 

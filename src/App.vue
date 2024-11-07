@@ -1,8 +1,10 @@
 <template>
   <div class="flex flex-col items-center">
-    <QueryAPI />
+    <StreamAPI />
+    <ConnectionStatus />
   </div>
 </template>
 <script setup lang="ts">
-import QueryAPI from './components/StreamAPI.vue'
+import StreamAPI from './components/StreamAPI.vue'
+import ConnectionStatus from './components/ConnectionStatus.vue'
 </script>

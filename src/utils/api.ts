@@ -2,8 +2,13 @@ import { APIResponse } from './types'
 
 const API_URL = 'http://localhost:8000'
 
+export async function statusAPI() {
+  return await fetch(API_URL + '/status')
+}
+
 export async function initAPI() {
-  await fetch(API_URL + '/init')
+  const response = await fetch(API_URL + '/init')
+  return response.ok
 }
 
 export async function queryAPI(query='What am I covered for if I am warded in the hospital?') {

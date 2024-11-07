@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
 import { APIResponse, ConversationStep } from './types'
 import { initAPI } from './api'
-import { VuePDF } from '@tato30/vue-pdf'
 
 export const useStore = defineStore(
   'store', {
     state: () => ({
+      serverIsAlive: false,
+      serverHistoryLength: 0,
       history: [] as ConversationStep[],
       activeResponse: null as null|APIResponse,
       stepIdx: null as null|number,
