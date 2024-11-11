@@ -1,0 +1,92 @@
+{
+    "question": "Tell me about prosthetic coverage for ntuc income. Give your answer in point form",
+    "text": "* NTUC Income's Enhanced IncomeShield offers prosthetic coverage as a special benefit, with coverage amounts varying by plan.  The Preferred plan covers \"As charged, up to $10,000 (each policy year),\" while the Advantage plan covers \"As charged, up to $6,000 (each policy year),\" and the Basic plan's coverage is \"As charged\" (696a80e3Enhanced2024 pages 15-16 quote1, quote2, quote3).\n\n* Coverage is contingent upon the limb or eye loss resulting from an injury or illness requiring hospitalization, a prescription from a registered medical practitioner, and purchase within 180 days of hospital discharge <cite> <doc>696a80e3Income2024 pages 9-11 quote1</doc><doc>696a80e3Income2024 pages 9-11 quote2</doc><doc>696a80e3Income2024 pages 9-11 quote3</doc><doc>696a80e3Income2024 pages 9-11 quote4</doc></cite>.  Only one prosthesis per limb or eye is covered unless a subsequent hospital stay necessitates a replacement <cite> <doc>696a80e3Income2024 pages 9-11 quote5</doc></cite>.\n\n*  The policy explicitly excludes coverage for replacement, repair, or maintenance of prostheses <cite> <doc>696a80e3Income2024 pages 9-11 quote5</doc></cite>.  Coverage is subject to the limits specified in the schedule of benefits, considering any prior payments within the policy year <cite><doc>696a80e3Income2024 pages 9-11</doc></cite>.  Optional items, prostheses, and corrective devices not surgically needed are not covered unless included under prosthesis benefits <cite> <doc>696a80e3Income2024 pages 20-20 quote1</doc></cite>.",
+    "references": [
+        {
+            "id": "696a80e3Income2024 pages 9-11 quote1",
+            "filepath": "NTUC IncomeShield Policy Conditions.pdf",
+            "citation": "\"NTUC IncomeShield Schedule of Benefits.\"  *Sample Policy Document*, n.p., n.d., n.pag.  Web. 2024.\n",
+            "pages": [
+                9,
+                10,
+                11
+            ],
+            "quote": "The prosthesis benefit pays for buying any prosthesis for the insured to use. This applies if the following conditions are met."
+        },
+        {
+            "id": "696a80e3Income2024 pages 9-11 quote2",
+            "filepath": "NTUC IncomeShield Policy Conditions.pdf",
+            "citation": "\"NTUC IncomeShield Schedule of Benefits.\"  *Sample Policy Document*, n.p., n.d., n.pag.  Web. 2024.\n",
+            "pages": [
+                9,
+                10,
+                11
+            ],
+            "quote": "\u2022  The insured needs the prosthesis because they have lost a limb or eye resulting from an injury or illness that the insured has to stay in a hospital for."
+        },
+        {
+            "id": "696a80e3Income2024 pages 9-11 quote3",
+            "filepath": "NTUC IncomeShield Policy Conditions.pdf",
+            "citation": "\"NTUC IncomeShield Schedule of Benefits.\"  *Sample Policy Document*, n.p., n.d., n.pag.  Web. 2024.\n",
+            "pages": [
+                9,
+                10,
+                11
+            ],
+            "quote": "\u2022  The prosthesis is ordered by a registered medical practitioner."
+        },
+        {
+            "id": "696a80e3Income2024 pages 9-11 quote4",
+            "filepath": "NTUC IncomeShield Policy Conditions.pdf",
+            "citation": "\"NTUC IncomeShield Schedule of Benefits.\"  *Sample Policy Document*, n.p., n.d., n.pag.  Web. 2024.\n",
+            "pages": [
+                9,
+                10,
+                11
+            ],
+            "quote": "\u2022  The prosthesis must be bought within 180 days after the date the insured leaves hospital."
+        },
+        {
+            "id": "696a80e3Income2024 pages 9-11 quote5",
+            "filepath": "NTUC IncomeShield Policy Conditions.pdf",
+            "citation": "\"NTUC IncomeShield Schedule of Benefits.\"  *Sample Policy Document*, n.p., n.d., n.pag.  Web. 2024.\n",
+            "pages": [
+                9,
+                10,
+                11
+            ],
+            "quote": "To avoid doubt, we will not pay for replacing, repairing or maintaining the prosthesis."
+        },
+        {
+            "id": "696a80e3Income2024 pages 9-11 quote5",
+            "filepath": "NTUC IncomeShield Policy Conditions.pdf",
+            "citation": "\"NTUC IncomeShield Schedule of Benefits.\"  *Sample Policy Document*, n.p., n.d., n.pag.  Web. 2024.\n",
+            "pages": [
+                9,
+                10,
+                11
+            ],
+            "quote": "To avoid doubt, we will not pay for replacing, repairing or maintaining the prosthesis."
+        },
+        {
+            "id": "696a80e3Income2024 pages 9-11",
+            "filepath": "NTUC IncomeShield Policy Conditions.pdf",
+            "citation": "\"NTUC IncomeShield Schedule of Benefits.\"  *Sample Policy Document*, n.p., n.d., n.pag.  Web. 2024.\n",
+            "pages": [
+                9,
+                10,
+                11
+            ],
+            "quote": null
+        },
+        {
+            "id": "696a80e3Income2024 pages 20-20 quote1",
+            "filepath": "NTUC IncomeShield Policy Conditions.pdf",
+            "citation": "\"NTUC IncomeShield Schedule of Benefits.\"  *Sample Policy Document*, n.p., n.d., n.pag.  Web. 2024.\n",
+            "pages": [
+                20
+            ],
+            "quote": "t   Optional items which are outside the scope of treatment, prostheses and corrective devices, and medical appliances which are not needed surgically (unless this is covered under prosthesis benefit)."
+        }
+    ]
+}

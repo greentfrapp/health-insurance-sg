@@ -6,14 +6,14 @@
       </div>
     </div>
     <div ref="container"
-      class="grow shrink overflow-auto shadow-lg">
-      <div v-for="page in numPages"
+      class="pdf-container grow shrink overflow-auto shadow-lg"
+      v-if="store.activeDocument">
+      <div v-for="page in store.activeDocument.pages"
         :id="`page${page}`" class="pageContainer">
         <VuePDF ref="vuePDF"
-          v-if="activePDF"
-          :pdf="store.evidenceCache[activePDF].pdf"
+          :pdf="store.activeDocument.pdf"
           text-layer
-          :highlight-text="evidencePages.includes(page) ? innerQuote : ''"
+          :highlight-text="store.selectedEvidence && store.selectedEvidence.pages.includes(page) ? innerQuote : ''"
           :highlight-options="{
             completeWords: false,
             ignoreCase: true,
@@ -26,208 +26,125 @@
     <div v-if="searching" class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
       {{ movingToBookmark ? 'Quote not found, moving to nearest page instead...' : 'Searching...' }}
     </div>
-    <div v-if="movingToPage" class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
+    <!-- <div v-if="movingToPage" class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
       Moving to page {{ store.goToPage }}
-    </div>
+    </div> -->
   </div>
 </template>
+<style scoped>
+.pdf-container {
+  scroll-behavior: smooth;
+}
+</style>
 <script setup lang="ts">
 import { useStore } from '@/utils/store'
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
-import { VuePDF, usePDF } from '@tato30/vue-pdf'
+import { VuePDF, HighlightEventPayload } from '@tato30/vue-pdf'
 import '@tato30/vue-pdf/style.css'
-import { APIResponse } from '@/utils/types';
-
-const props = defineProps({
-  urls: {
-    type: Array<string>,
-    default: [],
-  },
-})
+import { usePageCounter } from '@/utils/pageCounter'
 
 const store = useStore()
-const activePDF = ref('')
-
-watch(() => props.urls, urls => {
-  // Cache PDFs
-  urls.forEach(url => {
-    if (!(url in store.evidenceCache)) {
-      const pdfLoader = usePDF(url)
-      store.evidenceCache[url] = pdfLoader
-      console.log(`Loaded ${url}`)
-    }
-  })
-  if (urls.length) activePDF.value = urls[0]
-  else activePDF.value = store.lastDocumentKey as string
-}, { immediate: true })
 
 const innerQuote = ref('')
-const evidencePages = ref([] as number[])
-
-// TODO: index with URL as well to support multiple documents
-const evidenceId = computed(() => {
-  if (store.quoteIdx === null || store.evidenceIdx === null) return null
-  else return store.evidenceIdx.toString() + '-' + store.quoteIdx.toString()
-})
-
-watch(() => [store.stepIdx, store.evidenceIdx, store.quoteIdx], async (
-  [stepIdx, evidenceIdx, quoteIdx],
-  [prevStepIdx, prevEvidenceIdx, prevQuoteIdx],
-) => {
-  if (stepIdx === null || evidenceIdx === null || quoteIdx === null) return
-  if (store.history.length <= stepIdx) return
-  // Support repeated search since user might have scrolled away
-  // This means we first clear evidencePages so that watcher will retrigger
-  if (prevStepIdx === null || prevEvidenceIdx === null || prevQuoteIdx === null) {
-    evidencePages.value = []
-    await nextTick()
-  }
-  const activeResponse = store.history[stepIdx].value as APIResponse
-  if (activePDF.value !== activeResponse.references[evidenceIdx].filepath) {
-    activePDF.value = activeResponse.references[evidenceIdx].filepath
-    await new Promise(r => setTimeout(r, 1000)) 
-  }
-  evidencePages.value = activeResponse.references[evidenceIdx].pages
-  innerQuote.value = activeResponse.references[evidenceIdx].quotes[quoteIdx].quote
-})
-
 const container = ref<null|HTMLDivElement>(null)
-async function scrollToEvidence() {
+let scrollTop = 0
+
+function scrollToEvidence() {
   if (!container.value) return
-  if (evidenceId.value === null || !evidenceTopCache[evidenceId.value]) return
-  container.value.scrollTo({
-    top: evidenceTopCache[evidenceId.value],
-    behavior: "smooth",
-  })
-  store.evidenceIdx = store.quoteIdx = null
+  container.value.scrollTop = scrollTop
 }
 
-const evidenceTopCache = {} as any
+function scrollToPage(page: number) {
+  if (!container.value) return
+  const bookmarkEl = document.getElementById(`page${page}`) as HTMLDivElement
+  const bookmarkRect = bookmarkEl.getBoundingClientRect()
+  scrollTop = Math.max(
+    0,
+    Math.min(
+      container.value.scrollTop + bookmarkRect.top - padding,
+    )
+  )
+  scrollToEvidence()
+}
 
-const padding = 100
-const foundQuote = ref(false)
-const searchingPages = ref([] as number[])
+let foundQuote = false
+const padding = 200
+let searchingPages = ref([] as number[])
 const movingToBookmark = ref(false)
 const searching = computed(() => {
   return !!searchingPages.value.length || movingToBookmark.value
 })
-watch(() => [innerQuote.value, evidencePages.value], ([innerQuote, evidencePages]) => {
-  if (innerQuote && evidencePages.length) {
-    foundQuote.value = false
-    searchingPages.value = evidencePages as number[]
+watch(() => store.evidenceKey, async () => {
+  if (store.selectedEvidenceId === null) return
+  // Reset highlights
+  innerQuote.value = ''
+  await nextTick()
+  // Search new quote or section
+  if (!store.selectedEvidence) return
+  if (!container.value) return
+  // Reset scrollTop
+  scrollTop = container.value.scrollHeight
+  const pages = store.selectedEvidence.pages
+  if (store.selectedEvidence.quote) {
+    // Trigger search and highlight
+    searchingPages.value = pages
+    innerQuote.value = store.selectedEvidence.quote
+    foundQuote = false
+  } else {
+    // Scroll to nearest page
+    scrollToPage(Math.min(...pages))
   }
 })
-function onHighlight(value: any) {
-  searchingPages.value = searchingPages.value.filter(p => p !== value.page)
+
+function onHighlight(payload: HighlightEventPayload) {
   if (!container.value) return
-  if (!evidenceId.value) return
-  if (value.matches) {
-    const match = value.matches[0]
-    if (match) {
-      const startDiv = value.textDivs[match.start.idx] as HTMLDivElement
-      const startRect = startDiv.children[0].getBoundingClientRect()
-      const endDiv = value.textDivs[match.end.idx] as HTMLDivElement
-      const endRect = endDiv.children[0].getBoundingClientRect()
-      const newMaxY = Math.max(
-        0,
-        Math.min(
-          container.value.scrollTop + startRect.top - padding,
-          container.value.scrollTop + endRect.top - padding,
-        )
+  searchingPages.value = searchingPages.value.filter(p => p !== payload.page)
+  if (payload.matches && payload.matches[0]) {
+    foundQuote = true
+    const match = payload.matches[0]
+    const startDiv = payload.textDivs[match.start.idx] as HTMLDivElement
+    const startRect = startDiv.children[0].getBoundingClientRect()
+    const endDiv = payload.textDivs[match.end.idx] as HTMLDivElement
+    const endRect = endDiv.children[0].getBoundingClientRect()
+    const newMaxY = Math.max(
+      0,
+      Math.min(
+        container.value.scrollTop + startRect.top - padding,
+        container.value.scrollTop + endRect.top - padding,
       )
-      if ((!(evidenceId.value in evidenceTopCache)) || evidenceTopCache[evidenceId.value] > newMaxY) {
-        evidenceTopCache[evidenceId.value] = newMaxY
-      }
-      foundQuote.value = true
+    )
+    if (scrollTop > newMaxY) {
+      scrollTop = newMaxY
     }
   }
-  // After search is complete, scroll to evidence
+  // If no more pages to search, start scrolling
   if (!searchingPages.value.length) {
-    if (foundQuote.value) {
+    if (foundQuote) {
       scrollToEvidence()
     } else {
       // Quote not found, moving to nearest page instead
       movingToBookmark.value = true
       setTimeout(() => {
-        if (!container.value) return
-        if (!evidenceId.value) return
-        const bookmarkEl = document.getElementById(`page${Math.min(...evidencePages.value)}`) as HTMLDivElement
-        const bookmarkRect = bookmarkEl.getBoundingClientRect()
-        evidenceTopCache[evidenceId.value] = Math.max(
-          0,
-          Math.min(
-            container.value.scrollTop + bookmarkRect.top - padding,
-          )
-        )
-        scrollToEvidence()
         movingToBookmark.value = false
+        if (!store.selectedEvidence) return
+        scrollToPage(Math.min(...store.selectedEvidence.pages))
       }, 1000)
     }
   }
 }
 
-const movingToPage = ref(false)
-function goToPage(doc: string|null, page: number|null) {
-  if (doc === null || page === null) return
-  movingToPage.value = true
-  activePDF.value = doc
-  setTimeout(() => {
-    movingToPage.value = false
-    if (!container.value) return
-    const bookmarkEl = document.getElementById(`page${page}`) as HTMLDivElement
-    const bookmarkRect = bookmarkEl.getBoundingClientRect()
-    const position = Math.max(
-      0,
-      Math.min(
-        container.value.scrollTop + bookmarkRect.top,
-      )
-    )
-    container.value.scrollTo({
-      top: position,
-      behavior: "smooth",
-    })
-    store.goToPage = null
-  }, 500)
-  // Clear previous highlight
-  innerQuote.value = ''
-  evidencePages.value = []
-}
-watch(() => store.goToPage, page => {
-  goToPage(store.goToDoc, page)
-})
-watch(() => store.goToDoc, doc => {
-  goToPage(doc, store.goToPage)
-})
-
-const currentPage = ref(1)
+// Logic for counting page number
+const currentPage = ref(0)
 let pageContainers: HTMLCollectionOf<Element>
-function intersectionCallback(entries: any) {
-  let maxIntersection = 0
-  for (let i=0; i<entries.length; i++) {
-    const entry = entries[i]
-    if (entry.intersectionRatio > maxIntersection) {
-      currentPage.value = parseInt(entry.target.id.replace('page', ''))
-      maxIntersection = entry.intersectionRatio
-    }
-  }
-}
-const numPages = computed(() => props.urls.length ? store.evidenceCache[props.urls[0]].pages : store.lastDocument.pages)
+const numPages = computed(() => store.activeDocument ? store.activeDocument.pages : 0)
 watch(numPages, async () => {
   await nextTick()
-  const observer = new IntersectionObserver(
-    intersectionCallback,
-    {
-      root: container.value,
-      rootMargin: '0px',
-      threshold: [0.5],
-    }
-  )
+  if (!container.value) return
   pageContainers = document.getElementsByClassName('pageContainer')
-  for (let i=0; i<pageContainers.length; i++) {
-    observer.observe(pageContainers[i])
-  }
+  usePageCounter(container.value, pageContainers, currentPage)
 }, { immediate: true })
 
+// Resize PDF if window is resized
 const vuePDF = ref<null|typeof VuePDF>(null)
 function reloadPDF() {
   if (vuePDF.value) vuePDF.value.map((v: any) => {

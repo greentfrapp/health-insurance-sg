@@ -1,31 +1,29 @@
 <template>
-  <div v-if="activeResponse" ref="citation" class="inline-block w-max cursor-pointer px-1"
+  <div ref="citation" class="inline-block w-max cursor-pointer px-1"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave">
-    <div class="px-1 py-0 h-max rounded w-4 h-4 text-xs font-medium text-neutral-700 bg-neutral-200/70 flex items-center justify-center">
-      {{ props.evidenceIdx }}
+    <div class="px-1 py-0 h-max rounded min-w-4 h-4 text-xs font-medium text-neutral-700 bg-neutral-200/70 flex items-center justify-center">
+      {{ idx }}
     </div>
     <div v-if="showCitations"
       class="absolute bg-white rounded-lg p-4 shadow-lg max-w-full max-h-[10rem] overflow-auto space-y-3 text-xs transition-opacity duration-300"
       :class="[ isHiding ? 'opacity-0' : 'opacity-100' ]"
       :style="boxPosition">
       <div>
-        {{ activeResponse.references[evidenceIdx].value }}
-        Page{{ activeResponse.references[evidenceIdx].pages.length > 1 ? 's' : '' }} {{ activeResponse.references[evidenceIdx].pages[0] }}{{ activeResponse.references[evidenceIdx].pages.length > 1 ? `-${activeResponse.references[evidenceIdx].pages[activeResponse.references[evidenceIdx].pages.length-1]}` : '' }}
+        {{ evidence.citation }}
+        Page{{ evidence.pages.length > 1 ? 's' : '' }} {{ evidence.pages[0] }}{{ evidence.pages.length > 1 ? `-${evidence.pages[evidence.pages.length-1]}` : '' }}
       </div>
-      <div v-if="quoteIdx.length" class="space-y-4">
-        <div v-for="i in quoteIdx" class="space-y-2">
-          <div class="border-l-4 border-neutral-500 pl-4 italic">
-            {{ activeResponse.references[evidenceIdx].quotes[i].quote }}
-          </div>
-          <div class="flex w-full cursor-pointer underline" 
-            @click="findQuote(stepIdx, evidenceIdx, quoteIdx)">
-            Find in text
-          </div>
+      <div v-if="evidence.quote" class="space-y-4">
+        <div class="border-l-4 border-neutral-500 pl-4 italic">
+        {{ evidence.quote }}
+        </div>
+        <div class="flex w-full cursor-pointer underline" 
+        @click="store.goToEvidence(props.evidenceId)">
+        Find in text
         </div>
       </div>
       <div v-else class="cursor-pointer underline"
-        @click="goToPage(evidenceIdx)">
+        @click="store.goToEvidence(props.evidenceId)">
         Go to section
       </div>
     </div>
@@ -33,19 +31,10 @@
 </template>
 <script setup lang="ts">
 import { useStore } from '@/utils/store'
-import { APIResponse } from '@/utils/types'
 import { computed, ref, watch } from 'vue'
 
 const props = defineProps({
-  stepIdx: {
-    type: String,
-    default: "0",
-  },
-  evidenceIdx: {
-    type: String,
-    default: "1",
-  },
-  quoteIdx: {
+  evidenceId: {
     type: String,
     default: "",
   },
@@ -53,34 +42,13 @@ const props = defineProps({
 
 const store = useStore()
 
-const stepIdx = computed(() => {
-  return parseInt(props.stepIdx)
-})
-const evidenceIdx = computed(() => {
-  return parseInt(props.evidenceIdx) - 1
-})
-const quoteIdx = computed(() => {
-  if (!props.quoteIdx) return null
-  else return JSON.parse(props.quoteIdx)
-})
-const activeResponse = computed(() => {
-  if (store.history.length > stepIdx.value) return store.history[stepIdx.value].value as APIResponse
+const idx = computed(() => {
+  return Object.keys(store.evidenceCache).indexOf(props.evidenceId) + 1
 })
 
-function findQuote(stepIdx: number, evidenceIdx: number, quoteIdx: number) {
-  store.stepIdx = stepIdx
-  store.evidenceIdx = evidenceIdx
-  store.quoteIdx = quoteIdx
-}
-
-function goToPage(evidenceIdx: number) {
-  if (!activeResponse.value) return
-  store.goToDoc = activeResponse.value.references[evidenceIdx].filepath
-  store.goToPage = activeResponse.value.references[evidenceIdx].pages[0]
-  store.stepIdx = null
-  store.evidenceIdx = null
-  store.quoteIdx = null
-}
+const evidence = computed(() => {
+  return store.evidenceCache[props.evidenceId]
+})
 
 const showCitations = ref(false)
 const isHiding = ref<null|number>(null)

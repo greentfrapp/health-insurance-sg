@@ -11,14 +11,24 @@ export interface Reference {
   quotes: Quote[]
 }
 
+export interface Evidence {
+  id: string
+  citation: string
+  filepath: string
+  pages: number[]
+  quote?: string
+}
+
 export interface APIResponse {
   question: string
   text: string
-  references: Reference[]
+  references: Evidence[]
 }
 
-export interface ConversationStep {
-  id: string
-  role: 'user' | 'agent'
-  value: string | APIResponse
+export interface ChatMessage {
+  // id: string
+  role: 'user' | 'assistant'
+  content: string
+  formattedContent: string | APIResponse
+  hidden?: boolean
 }

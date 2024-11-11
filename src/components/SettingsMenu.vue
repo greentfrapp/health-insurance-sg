@@ -14,9 +14,7 @@
   </div>
 </template>
 <script setup lang="ts">
-// Support export and loading of convos
 // Loading need to also load on server-side
-// Support reset convo
 import {
   ArrowDownTrayIcon,
   ArrowPathIcon,
