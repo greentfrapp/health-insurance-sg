@@ -9,10 +9,12 @@ export async function statusAPI() {
 export async function streamAPI(
   query = 'What am I covered for if I am warded in the hospital?',
   history: ChatMessage[] = [],
+  current_policy: string|null = null,
 ) {
   const body = JSON.stringify({
     query,
     history,
+    current_policy,
   })
   const response = await fetch(API_URL + '/stream_query', {
     method: 'POST',

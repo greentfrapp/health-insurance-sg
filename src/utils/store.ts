@@ -5,10 +5,17 @@ import { v4 as uuidv4 } from 'uuid'
 import { parseStreamResponse } from './utils'
 import { usePDF } from '@tato30/vue-pdf'
 
+const DOCUMENT_POLICY_DICT = {
+  'AIA HealthShield Gold Max Brochure.pdf': 'AIA HealthShield Gold',
+  'AIA HealthShield Gold Max Product Summary Booklet': 'AIA HealthShield Gold',
+  'GREAT SupremeHealth Brochure': 'Great Eastern GREAT SupremeHealth',
+  'GREAT SupremeHealth and GREAT TotalCare Benefit Schedule and Premium Rates': 'Great Eastern GREAT SupremeHealth',
+} as {[k: string]: string}
+
 export const useStore = defineStore(
   'store', {
     state: () => ({
-      version: '0.0.2',
+      version: '0.0.3',
       connectingToServer: false,
       serverIsAlive: false,
       serverVersion: '',
@@ -38,7 +45,7 @@ export const useStore = defineStore(
     },
     actions: {
       init() {
-        this.addDocument('./Enhanced IncomeShield Brochure.pdf')
+        this.addDocument('AIA HealthShield Gold Max Brochure.pdf')
       },
       exportHistory() {
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.history))
@@ -111,7 +118,15 @@ export const useStore = defineStore(
       },
       async submitQuery(query: string) {
         this.addUserResponse(query)
-        const stream = await streamAPI(query, this.history)
+        // Get current policy
+        let currentFilepath: string
+        if (this.selectedEvidence) {
+          currentFilepath = this.selectedEvidence.filepath
+        } else {
+          currentFilepath = Object.keys(this.documentCache)[0]
+        }
+        // Run streamAPI
+        const stream = await streamAPI(query, this.history, DOCUMENT_POLICY_DICT[currentFilepath])
         while (true) {
           const result = await stream.read()
           if (!result) throw 'API Error'
