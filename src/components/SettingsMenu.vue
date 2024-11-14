@@ -1,5 +1,5 @@
 <template>
-  <div class="relative" ref="settingsMenu">
+  <div class="relative" ref="menu">
     <button class="bg-neutral-800 text-neutral-50 w-8 h-8 flex items-center justify-center rounded-md"
       @click="showMenu = !showMenu">
       <Cog6ToothIcon class="w-4 h-4" />
@@ -21,8 +21,9 @@ import {
   ArrowUpTrayIcon,
   Cog6ToothIcon,
 } from '@heroicons/vue/20/solid'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { useStore } from '@/utils/store'
+import { handleMenuClick } from '@/utils/handleMenuClick'
 
 const showMenu = ref(false)
 
@@ -46,12 +47,11 @@ const features = [
   }
 ]
 
-const settingsMenu = ref<null|HTMLDivElement>(null)
+const menu = ref<null|HTMLDivElement>(null)
 onMounted(() => {
-  document.addEventListener('click', e => {
-    if (!settingsMenu.value) return
-    const target = e.target as HTMLElement
-    if (!settingsMenu.value.contains(target)) showMenu.value = false 
-  })
+  document.addEventListener('click', e => handleMenuClick(e, menu.value, showMenu))
+})
+onUnmounted(() => {
+  document.removeEventListener('click', e => handleMenuClick(e, menu.value, showMenu))
 })
 </script>

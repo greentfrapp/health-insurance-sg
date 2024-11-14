@@ -5,12 +5,24 @@ import { v4 as uuidv4 } from 'uuid'
 import { parseStreamResponse } from './utils'
 import { usePDF } from '@tato30/vue-pdf'
 
-const DOCUMENT_POLICY_DICT = {
-  'AIA HealthShield Gold Max Brochure.pdf': 'AIA HealthShield Gold',
-  'AIA HealthShield Gold Max Product Summary Booklet': 'AIA HealthShield Gold',
-  'GREAT SupremeHealth Brochure': 'Great Eastern GREAT SupremeHealth',
-  'GREAT SupremeHealth and GREAT TotalCare Benefit Schedule and Premium Rates': 'Great Eastern GREAT SupremeHealth',
-} as {[k: string]: string}
+
+export const POLICY_DOCUMENTS = {
+  'AIA HealthShield Gold': [
+    'AIA HealthShield Gold Max Brochure.pdf',
+    'AIA HealthShield Gold Max Product Summary Booklet (truncated).pdf',
+  ],
+  'Great Eastern GREAT SupremeHealth': [
+    'GREAT SupremeHealth Brochure.pdf',
+    'GREAT SupremeHealth and GREAT TotalCare Benefit Schedule and Premium Rates.pdf',
+  ],
+} as {[k: string]: string[]}
+
+// A reverse mapping of document to policy 
+export const DOCUMENT_POLICY_DICT = Object.fromEntries(([] as string[][]).concat(
+  ...Object.entries(POLICY_DOCUMENTS).map(
+    entry => entry[1].map(doc => [doc, entry[0]])
+  )
+))
 
 export const useStore = defineStore(
   'store', {
@@ -25,11 +37,15 @@ export const useStore = defineStore(
       evidenceCache: {} as {[k: string]: Evidence},
       selectedEvidenceId: null as null | string,
       evidenceKey: null as null | string, // A random key for resetting evidence state
+      selectedDocument: null as null | string, // Ignored if selectedEvidenceId is not null
     }),
     getters: {
       activeDocument(state): any {
         if (this.selectedEvidence) {
           return state.documentCache[this.selectedEvidence.filepath]
+        }
+        if (this.selectedDocument) {
+          return state.documentCache[this.selectedDocument]
         }
         const docs = Object.values(state.documentCache)
         if (!docs.length) return null
@@ -45,7 +61,7 @@ export const useStore = defineStore(
     },
     actions: {
       init() {
-        this.addDocument('AIA HealthShield Gold Max Brochure.pdf')
+        Object.keys(DOCUMENT_POLICY_DICT).forEach(this.addDocument)
       },
       exportHistory() {
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.history))
@@ -122,6 +138,8 @@ export const useStore = defineStore(
         let currentFilepath: string
         if (this.selectedEvidence) {
           currentFilepath = this.selectedEvidence.filepath
+        } else if (this.selectedDocument) {
+          currentFilepath = this.selectedDocument
         } else {
           currentFilepath = Object.keys(this.documentCache)[0]
         }
@@ -157,7 +175,11 @@ export const useStore = defineStore(
       goToEvidence(evidenceId: string) {
         this.selectedEvidenceId = evidenceId
         this.evidenceKey = uuidv4()
-      }
+      },
+      openDocument(filepath: string) {
+        this.selectedEvidenceId = null
+        this.selectedDocument = filepath
+      },
     },
   }
 )

@@ -1,15 +1,17 @@
 <template>
   <div class="relative flex flex-col">
-    <div class="flex flex-col items-center py-2">
-      <div class="text-xs px-3 py-1 bg-neutral-100 rounded-full">
-        Page {{ currentPage }} / {{ numPages }}
+    <div class="relative flex flex-col items-center py-2">
+      <PageCounter :current-page="currentPage" :num-pages="numPages"
+        @goToPage="scrollToPage" />
+      <div class="absolute right-0">
+        <PoliciesMenu />
       </div>
     </div>
     <div ref="container"
-      class="pdf-container grow shrink overflow-auto shadow-lg"
+      class="pdf-container grow shrink overflow-auto shadow-lg space-y-2 p-10 rounded-xl border bg-white"
       v-if="store.activeDocument">
       <div v-for="page in store.activeDocument.pages"
-        :id="`page${page}`" class="pageContainer">
+        :id="`page${page}`" class="pageContainer shadow">
         <VuePDF ref="vuePDF"
           :pdf="store.activeDocument.pdf"
           text-layer
@@ -42,6 +44,8 @@ import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { VuePDF, HighlightEventPayload } from '@tato30/vue-pdf'
 import '@tato30/vue-pdf/style.css'
 import { usePageCounter } from '@/utils/pageCounter'
+import PageCounter from './PageCounter.vue'
+import PoliciesMenu from './PoliciesMenu.vue'
 
 const store = useStore()
 
