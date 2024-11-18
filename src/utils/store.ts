@@ -4,18 +4,12 @@ import { statusAPI, streamAPI } from './api'
 import { v4 as uuidv4 } from 'uuid'
 import { parseStreamResponse } from './utils'
 import { usePDF } from '@tato30/vue-pdf'
+import policyDocumentsJSON from './policyDocuments.json'
 
+export const POLICY_DOCUMENTS = policyDocumentsJSON
 
-export const POLICY_DOCUMENTS = {
-  'AIA HealthShield Gold': [
-    'AIA HealthShield Gold Max Brochure.pdf',
-    'AIA HealthShield Gold Max Product Summary Booklet (truncated).pdf',
-  ],
-  'Great Eastern GREAT SupremeHealth': [
-    'GREAT SupremeHealth Brochure.pdf',
-    'GREAT SupremeHealth and GREAT TotalCare Benefit Schedule and Premium Rates.pdf',
-  ],
-} as {[k: string]: string[]}
+const S3_URL = 'https://health-insurance-sg.s3.us-west-1.amazonaws.com/'
+
 
 // A reverse mapping of document to policy 
 export const DOCUMENT_POLICY_DICT = Object.fromEntries(([] as string[][]).concat(
@@ -61,7 +55,9 @@ export const useStore = defineStore(
     },
     actions: {
       init() {
-        Object.keys(DOCUMENT_POLICY_DICT).forEach(this.addDocument)
+        // TODO: Add onboarding for user to select a policy
+        // and load user-selected document first
+        this.addDocument(Object.keys(DOCUMENT_POLICY_DICT)[0])
       },
       exportHistory() {
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.history))
@@ -110,7 +106,7 @@ export const useStore = defineStore(
       },
       addDocument(url: string) {
         if (url in this.documentCache) return
-        const pdfLoader = usePDF(url)
+        const pdfLoader = usePDF(S3_URL + url)
         this.documentCache[url] = pdfLoader
         console.log(`Loaded ${url}`)
       },
@@ -176,9 +172,10 @@ export const useStore = defineStore(
         this.selectedEvidenceId = evidenceId
         this.evidenceKey = uuidv4()
       },
-      openDocument(filepath: string) {
+      openDocument(url: string) {
+        this.addDocument(url)
         this.selectedEvidenceId = null
-        this.selectedDocument = filepath
+        this.selectedDocument = url
       },
     },
   }

@@ -4,7 +4,7 @@
       @click="showMenu = !showMenu">
       <FolderOpenIcon class="w-3 h-3" />
     </button>
-    <div v-if="showMenu" class="absolute bg-white shadow rounded-md top-full right-0 px-2 py-1 translate-y-1 border space-y-1 w-64 z-10 text-xs">
+    <div v-if="showMenu" class="absolute bg-white shadow rounded-md top-full right-0 px-2 py-1 translate-y-1 border space-y-1 w-64 z-10 text-xs max-h-40 overflow-auto">
       <div class="font-medium">
         Open a document
       </div>
@@ -44,10 +44,13 @@ const policies = computed(() => {
     const documents = entry[1]
     return {
       label: policy,
-      documents: documents.map(doc => ({
-        label: doc,
-        action: () => { store.openDocument(doc); showMenu.value = false },
-      }))
+      documents: documents.map(doc => {
+        const docName = doc.split('/')[doc.split('/').length - 1].split('.pdf')[0]
+        return {
+          label: docName,
+          action: () => { store.openDocument(doc); showMenu.value = false },
+        }
+      }),
     }
   })
 })
