@@ -21,7 +21,7 @@ export const DOCUMENT_POLICY_DICT = Object.fromEntries(([] as string[][]).concat
 export const useStore = defineStore(
   'store', {
     state: () => ({
-      version: '0.0.4',
+      version: '0.0.5',
       connectingToServer: false,
       serverIsAlive: false,
       serverVersion: '',
