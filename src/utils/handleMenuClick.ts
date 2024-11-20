@@ -2,7 +2,7 @@ import { Ref } from 'vue'
 
 export function handleMenuClick(
   event: MouseEvent,
-  menuEl: HTMLDivElement|null,
+  menuEl: HTMLDivElement | null,
   showMenu: Ref<boolean, boolean>,
 ) {
   if (!menuEl) return

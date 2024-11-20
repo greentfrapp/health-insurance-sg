@@ -9,7 +9,7 @@ export async function statusAPI() {
 export async function streamAPI(
   query = 'What am I covered for if I am warded in the hospital?',
   history: ChatMessage[] = [],
-  current_policy: string|null = null,
+  current_policy: string | null = null,
 ) {
   const body = JSON.stringify({
     query,

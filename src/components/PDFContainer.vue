@@ -1,21 +1,32 @@
 <template>
   <div class="relative flex flex-col">
     <div class="relative flex flex-col items-center py-2">
-      <PageCounter :current-page="currentPage" :num-pages="numPages"
+      <PageCounter
+        :current-page="currentPage"
+        :num-pages="numPages"
         @goToPage="scrollToPage" />
       <div class="absolute right-0">
         <PoliciesMenu />
       </div>
     </div>
-    <div ref="container"
+    <div
+      ref="container"
       class="pdf-container grow shrink overflow-auto shadow-lg space-y-2 p-10 rounded-xl border bg-white"
       v-if="store.activeDocument">
-      <div v-for="page in store.activeDocument.pages"
-        :id="`page${page}`" class="pageContainer shadow">
-        <VuePDF ref="vuePDF"
+      <div
+        v-for="page in store.activeDocument.pages"
+        :id="`page${page}`"
+        class="pageContainer shadow">
+        <VuePDF
+          ref="vuePDF"
           :pdf="store.activeDocument.pdf"
           text-layer
-          :highlight-text="store.selectedEvidence && store.selectedEvidence.pages.includes(page) ? innerQuote : ''"
+          :highlight-text="
+            store.selectedEvidence &&
+            store.selectedEvidence.pages.includes(page)
+              ? innerQuote
+              : ''
+          "
           :highlight-options="{
             completeWords: false,
             ignoreCase: true,
@@ -25,8 +36,14 @@
           :page="page" />
       </div>
     </div>
-    <div v-if="searching" class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
-      {{ movingToBookmark ? 'Quote not found, moving to nearest page instead...' : 'Searching...' }}
+    <div
+      v-if="searching"
+      class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
+      {{
+        movingToBookmark
+          ? 'Quote not found, moving to nearest page instead...'
+          : 'Searching...'
+      }}
     </div>
     <!-- <div v-if="movingToPage" class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
       Moving to page {{ store.goToPage }}
@@ -50,7 +67,7 @@ import PoliciesMenu from './PoliciesMenu.vue'
 const store = useStore()
 
 const innerQuote = ref('')
-const container = ref<null|HTMLDivElement>(null)
+const container = ref<null | HTMLDivElement>(null)
 let scrollTop = 0
 
 function scrollToEvidence() {
@@ -64,9 +81,7 @@ function scrollToPage(page: number) {
   const bookmarkRect = bookmarkEl.getBoundingClientRect()
   scrollTop = Math.max(
     0,
-    Math.min(
-      container.value.scrollTop + bookmarkRect.top - padding,
-    )
+    Math.min(container.value.scrollTop + bookmarkRect.top - padding),
   )
   scrollToEvidence()
 }
@@ -78,31 +93,34 @@ const movingToBookmark = ref(false)
 const searching = computed(() => {
   return !!searchingPages.value.length || movingToBookmark.value
 })
-watch(() => store.evidenceKey, async () => {
-  if (store.selectedEvidenceId === null) return
-  // Reset highlights
-  innerQuote.value = ''
-  await nextTick()
-  // Search new quote or section
-  if (!store.selectedEvidence) return
-  if (!container.value) return
-  // Reset scrollTop
-  scrollTop = container.value.scrollHeight
-  const pages = store.selectedEvidence.pages
-  if (store.selectedEvidence.quote) {
-    // Trigger search and highlight
-    searchingPages.value = pages
-    innerQuote.value = store.selectedEvidence.quote
-    foundQuote = false
-  } else {
-    // Scroll to nearest page
-    scrollToPage(Math.min(...pages))
-  }
-})
+watch(
+  () => store.evidenceKey,
+  async () => {
+    if (store.selectedEvidenceId === null) return
+    // Reset highlights
+    innerQuote.value = ''
+    await nextTick()
+    // Search new quote or section
+    if (!store.selectedEvidence) return
+    if (!container.value) return
+    // Reset scrollTop
+    scrollTop = container.value.scrollHeight
+    const pages = store.selectedEvidence.pages
+    if (store.selectedEvidence.quote) {
+      // Trigger search and highlight
+      searchingPages.value = pages
+      innerQuote.value = store.selectedEvidence.quote
+      foundQuote = false
+    } else {
+      // Scroll to nearest page
+      scrollToPage(Math.min(...pages))
+    }
+  },
+)
 
 function onHighlight(payload: HighlightEventPayload) {
   if (!container.value) return
-  searchingPages.value = searchingPages.value.filter(p => p !== payload.page)
+  searchingPages.value = searchingPages.value.filter((p) => p !== payload.page)
   if (payload.matches && payload.matches[0]) {
     foundQuote = true
     const match = payload.matches[0]
@@ -115,7 +133,7 @@ function onHighlight(payload: HighlightEventPayload) {
       Math.min(
         container.value.scrollTop + startRect.top - padding,
         container.value.scrollTop + endRect.top - padding,
-      )
+      ),
     )
     if (scrollTop > newMaxY) {
       scrollTop = newMaxY
@@ -140,20 +158,27 @@ function onHighlight(payload: HighlightEventPayload) {
 // Logic for counting page number
 const currentPage = ref(0)
 let pageContainers: HTMLCollectionOf<Element>
-const numPages = computed(() => store.activeDocument ? store.activeDocument.pages : 0)
-watch(numPages, async () => {
-  await nextTick()
-  if (!container.value) return
-  pageContainers = document.getElementsByClassName('pageContainer')
-  usePageCounter(container.value, pageContainers, currentPage)
-}, { immediate: true })
+const numPages = computed(() =>
+  store.activeDocument ? store.activeDocument.pages : 0,
+)
+watch(
+  numPages,
+  async () => {
+    await nextTick()
+    if (!container.value) return
+    pageContainers = document.getElementsByClassName('pageContainer')
+    usePageCounter(container.value, pageContainers, currentPage)
+  },
+  { immediate: true },
+)
 
 // Resize PDF if window is resized
-const vuePDF = ref<null|typeof VuePDF>(null)
+const vuePDF = ref<null | typeof VuePDF>(null)
 function reloadPDF() {
-  if (vuePDF.value) vuePDF.value.map((v: any) => {
-    v.reload()
-  })
+  if (vuePDF.value)
+    vuePDF.value.map((v: any) => {
+      v.reload()
+    })
 }
 
 onMounted(() => {

@@ -1,8 +1,13 @@
 <template>
-  <div class="absolute top-2 right-2 bg-white px-2 py-1 border shadow rounded text-sm flex items-center justify-center gap-2 text-neutral-600 cursor-pointer"
+  <div
+    class="absolute top-2 right-2 bg-white px-2 py-1 border shadow rounded text-sm flex items-center justify-center gap-2 text-neutral-600 cursor-pointer"
     @click="store.pingStatus">
-    <ArrowPathIcon v-if="store.connectingToServer" class="w-4 h-4 animate-spin" />
-    <div v-else class="w-2 h-2 rounded-full"
+    <ArrowPathIcon
+      v-if="store.connectingToServer"
+      class="w-4 h-4 animate-spin" />
+    <div
+      v-else
+      class="w-2 h-2 rounded-full"
       :style="{ background: statusColor }"></div>
     {{ statusMessage }}
   </div>
@@ -22,16 +27,17 @@ const statusColor = computed(() => {
 
 const statusMessage = computed(() => {
   if (store.serverIsAlive && store.serverIsCompatible) return 'Connected'
-  else if (store.serverIsAlive) return `Switch server to version ${store.version}`
+  else if (store.serverIsAlive)
+    return `Switch server to version ${store.version}`
   else return 'Server not found, click to retry'
 })
 
-let interval: number|null = null
+let interval: number | null = null
 onMounted(() => {
   store.pingStatus()
   interval = window.setInterval(store.pingStatus, 60000)
 })
-onUnmounted(() =>{ 
+onUnmounted(() => {
   if (interval) clearInterval(interval)
 })
 </script>
