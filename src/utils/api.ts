@@ -1,4 +1,4 @@
-import { APIResponse, ChatMessage } from './types'
+import { ChatMessage } from './types'
 
 const API_URL = 'http://localhost:8000'
 

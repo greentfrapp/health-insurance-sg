@@ -26,8 +26,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useStore } from '@/utils/store'
 import { useRouter } from 'vue-router'
+import { useStore } from '@/utils/store'
 
 const plans = [
   {

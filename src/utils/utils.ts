@@ -1,7 +1,7 @@
-import { shallowRef } from 'vue'
 import showdown from 'showdown'
+import { shallowRef } from 'vue'
 import CitationQuote from '@/components/CitationQuote.vue'
-import { APIResponse, ChatMessage } from './types'
+import { APIResponse, ChatMessage } from '@/utils/types'
 
 export function parseResponse(response: APIResponse) {
   const converter = new showdown.Converter({ tables: true })

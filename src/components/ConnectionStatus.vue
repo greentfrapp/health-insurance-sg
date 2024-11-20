@@ -13,9 +13,9 @@
   </div>
 </template>
 <script setup lang="ts">
+import { ArrowPathIcon } from '@heroicons/vue/20/solid'
 import { computed, onMounted, onUnmounted } from 'vue'
 import { useStore } from '@/utils/store'
-import { ArrowPathIcon } from '@heroicons/vue/20/solid'
 
 const store = useStore()
 

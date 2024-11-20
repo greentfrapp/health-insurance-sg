@@ -29,10 +29,10 @@
 </template>
 <script setup lang="ts">
 import { FolderOpenIcon } from '@heroicons/vue/24/outline'
-import { onMounted, onUnmounted, ref } from 'vue'
-import { POLICY_DOCUMENTS, useStore } from '@/utils/store'
-import { handleMenuClick } from '@/utils/handleMenuClick'
 import { computed } from '@vue/reactivity'
+import { onMounted, onUnmounted, ref } from 'vue'
+import { handleMenuClick } from '@/utils/handleMenuClick'
+import { POLICY_DOCUMENTS, useStore } from '@/utils/store'
 
 const showMenu = ref(false)
 

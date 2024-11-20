@@ -42,8 +42,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useStore } from '@/utils/store'
 import { computed, ref, watch } from 'vue'
+import { useStore } from '@/utils/store'
 
 const props = defineProps({
   evidenceId: {

@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia'
-import { APIResponse, ChatMessage, Evidence } from './types'
-import { statusAPI, streamAPI } from './api'
-import { v4 as uuidv4 } from 'uuid'
-import { parseStreamResponse } from './utils'
 import { usePDF } from '@tato30/vue-pdf'
-import policyDocumentsJSON from './policyDocuments.json'
+import { defineStore } from 'pinia'
+import { v4 as uuidv4 } from 'uuid'
+import { statusAPI, streamAPI } from '@/utils/api'
+import policyDocumentsJSON from '@/utils/policyDocuments.json'
+import { APIResponse, ChatMessage, Evidence } from '@/utils/types'
+import { parseStreamResponse } from '@/utils/utils'
 
 export const POLICY_DOCUMENTS = policyDocumentsJSON
 

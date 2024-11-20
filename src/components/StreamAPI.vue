@@ -40,11 +40,11 @@
 </style>
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue'
-import { parseResponse } from '@/utils/utils'
+import PDFContainer from '@/components/PDFContainer.vue'
+import UserInput from '@/components/UserInput.vue'
 import { useStore } from '@/utils/store'
-import PDFContainer from './PDFContainer.vue'
-import UserInput from './UserInput.vue'
 import { APIResponse } from '@/utils/types'
+import { parseResponse } from '@/utils/utils'
 
 const store = useStore()
 

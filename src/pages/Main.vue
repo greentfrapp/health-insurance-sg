@@ -5,11 +5,11 @@
   </div>
 </template>
 <script setup lang="ts">
+import { onMounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import ConnectionStatus from '@/components/ConnectionStatus.vue'
 import StreamAPI from '@/components/StreamAPI.vue'
 import { useStore } from '@/utils/store'
-import { onMounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 
 const store = useStore()
 const route = useRoute()

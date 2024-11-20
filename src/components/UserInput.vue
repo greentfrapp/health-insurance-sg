@@ -36,10 +36,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useStore } from '@/utils/store'
 import { ArrowPathIcon, ExclamationCircleIcon } from '@heroicons/vue/20/solid'
-import SettingsMenu from './SettingsMenu.vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import SettingsMenu from '@/components/SettingsMenu.vue'
+import { useStore } from '@/utils/store'
 
 const store = useStore()
 

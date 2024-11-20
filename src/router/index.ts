@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Main from '@/pages/Main.vue'
 import Onboard from '@/pages/Onboard.vue'
 

@@ -27,8 +27,8 @@ import {
   Cog6ToothIcon,
 } from '@heroicons/vue/20/solid'
 import { onMounted, onUnmounted, ref } from 'vue'
-import { useStore } from '@/utils/store'
 import { handleMenuClick } from '@/utils/handleMenuClick'
+import { useStore } from '@/utils/store'
 
 const showMenu = ref(false)
 

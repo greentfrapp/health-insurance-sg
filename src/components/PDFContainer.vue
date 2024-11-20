@@ -71,14 +71,14 @@
 }
 </style>
 <script setup lang="ts">
-import { useStore } from '@/utils/store'
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
-import { VuePDF, HighlightEventPayload } from '@tato30/vue-pdf'
+import { HomeIcon } from '@heroicons/vue/24/outline'
+import { HighlightEventPayload, VuePDF } from '@tato30/vue-pdf'
 import '@tato30/vue-pdf/style.css'
-import { usePageCounter } from '@/utils/pageCounter'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import PageCounter from './PageCounter.vue'
 import PoliciesMenu from './PoliciesMenu.vue'
-import { HomeIcon } from '@heroicons/vue/24/outline'
+import { usePageCounter } from '@/utils/pageCounter'
+import { useStore } from '@/utils/store'
 
 const store = useStore()
 
