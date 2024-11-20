@@ -23,6 +23,10 @@
         </div>
       </div>
     </div>
+    <div class="text-neutral-600">
+      Information for each plan was taken from the respective company websites
+      on 28 October 2024.
+    </div>
   </div>
 </template>
 <script setup lang="ts">
