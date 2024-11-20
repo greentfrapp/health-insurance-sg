@@ -22,7 +22,7 @@ export const DOCUMENT_POLICY_DICT = Object.fromEntries(
 
 export const useStore = defineStore('store', {
   state: () => ({
-    version: '0.0.6',
+    version: '0.0.7',
     connectingToServer: false,
     serverIsAlive: false,
     serverVersion: '',
@@ -53,6 +53,14 @@ export const useStore = defineStore('store', {
       )
         return state.documentCache[this.activeDocumentPath]
       else return null
+    },
+    activePolicy(state): string | null {
+      if (
+        this.activeDocumentPath &&
+        this.activeDocumentPath in DOCUMENT_POLICY_DICT
+      ) {
+        return DOCUMENT_POLICY_DICT[this.activeDocumentPath]
+      } else return null
     },
     selectedEvidence(state) {
       if (state.selectedEvidenceId === null) return null

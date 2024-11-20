@@ -6,9 +6,9 @@
       <span class="font-semibold"> Singapore's Integrated Shield Plans </span>
     </h1>
     <div class="grid grid-cols-4 gap-4">
-      <div
+      <button
         v-for="plan in plans"
-        class="border shadow rounded-lg w-72 h-28 p-4 flex gap-4 items-center cursor-pointer hover:bg-neutral-50"
+        class="border shadow rounded-lg w-72 h-28 p-4 flex gap-4 items-center text-left hover:bg-neutral-50"
         @click="loadDocument(plan.document)">
         <img :src="plan.logo" class="w-12 h-12 shrink-0 rounded-lg shadow" />
         <div>
@@ -21,7 +21,7 @@
             </li>
           </ul>
         </div>
-      </div>
+      </button>
     </div>
     <div class="text-neutral-600">
       Information for each plan was taken from the respective company websites

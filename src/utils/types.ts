@@ -23,6 +23,7 @@ export interface APIResponse {
   question: string
   text: string
   references: Evidence[]
+  suggestedResponses?: string[]
 }
 
 export interface ChatMessage {
