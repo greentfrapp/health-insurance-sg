@@ -8,7 +8,8 @@ import policyDocumentsJSON from './policyDocuments.json'
 
 export const POLICY_DOCUMENTS = policyDocumentsJSON
 
-const S3_URL = 'https://health-insurance-sg.s3.us-west-1.amazonaws.com/'
+const S3_URL =
+  'https://health-insurance-sg-docs.s3.ap-southeast-1.amazonaws.com/'
 
 // A reverse mapping of document to policy
 export const DOCUMENT_POLICY_DICT = Object.fromEntries(
