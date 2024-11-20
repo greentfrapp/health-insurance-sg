@@ -22,7 +22,7 @@ export const DOCUMENT_POLICY_DICT = Object.fromEntries(
 
 export const useStore = defineStore('store', {
   state: () => ({
-    version: '0.0.5',
+    version: '0.0.6',
     connectingToServer: false,
     serverIsAlive: false,
     serverVersion: '',
