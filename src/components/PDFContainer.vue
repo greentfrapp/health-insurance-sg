@@ -1,53 +1,68 @@
 <template>
   <div class="relative flex flex-col">
-    <div class="relative flex flex-col items-center py-2">
-      <PageCounter
-        :current-page="currentPage"
-        :num-pages="numPages"
-        @goToPage="scrollToPage" />
-      <div class="absolute right-0">
+    <div
+      v-if="store.activeDocument && store.activeDocument.pages"
+      class="h-full relative flex flex-col">
+      <div class="relative flex justify-between items-center py-2">
+        <router-link
+          to="/"
+          class="bg-white text-neutral-700 w-6 h-6 flex items-center justify-center rounded-md shadow">
+          <HomeIcon class="w-3 h-3" />
+        </router-link>
+        <PageCounter
+          :current-page="currentPage"
+          :num-pages="numPages"
+          @goToPage="scrollToPage" />
         <PoliciesMenu />
       </div>
-    </div>
-    <div
-      ref="container"
-      class="pdf-container grow shrink overflow-auto shadow-lg space-y-2 p-10 rounded-xl border bg-white"
-      v-if="store.activeDocument">
       <div
-        v-for="page in store.activeDocument.pages"
-        :id="`page${page}`"
-        class="pageContainer shadow">
-        <VuePDF
-          ref="vuePDF"
-          :pdf="store.activeDocument.pdf"
-          text-layer
-          :highlight-text="
-            store.selectedEvidence &&
-            store.selectedEvidence.pages.includes(page)
-              ? innerQuote
-              : ''
-          "
-          :highlight-options="{
-            completeWords: false,
-            ignoreCase: true,
-          }"
-          fit-parent
-          @highlight="onHighlight"
-          :page="page" />
+        ref="container"
+        class="pdf-container grow shrink overflow-auto shadow-lg space-y-2 p-10 rounded-xl border bg-white">
+        <div
+          v-for="page in store.activeDocument.pages"
+          :id="`page${page}`"
+          class="pageContainer shadow">
+          <VuePDF
+            ref="vuePDF"
+            :pdf="store.activeDocument.pdf"
+            text-layer
+            :highlight-text="
+              store.selectedEvidence &&
+              store.selectedEvidence.pages.includes(page)
+                ? innerQuote
+                : ''
+            "
+            :highlight-options="{
+              completeWords: false,
+              ignoreCase: true,
+            }"
+            fit-parent
+            @highlight="onHighlight"
+            :page="page" />
+        </div>
+      </div>
+      <div
+        v-if="searching"
+        class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
+        {{
+          movingToBookmark
+            ? 'Quote not found, moving to nearest page instead...'
+            : 'Searching...'
+        }}
+      </div>
+      <!-- <div v-if="movingToPage" class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
+        Moving to page {{ store.goToPage }}
+      </div> -->
+    </div>
+    <div v-else class="flex flex-col h-screen">
+      <div class="invisible relative flex flex-col items-center py-2">
+        <PageCounter :current-page="0" :num-pages="0" />
+      </div>
+      <div
+        class="grow shrink overflow-auto shadow-lg rounded-xl border bg-white flex items-center justify-center text-neutral-500 animate-pulse">
+        Loading document...
       </div>
     </div>
-    <div
-      v-if="searching"
-      class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
-      {{
-        movingToBookmark
-          ? 'Quote not found, moving to nearest page instead...'
-          : 'Searching...'
-      }}
-    </div>
-    <!-- <div v-if="movingToPage" class="absolute top-0 left-0 w-full h-full bg-white/80 flex items-center justify-center">
-      Moving to page {{ store.goToPage }}
-    </div> -->
   </div>
 </template>
 <style scoped>
@@ -63,6 +78,7 @@ import '@tato30/vue-pdf/style.css'
 import { usePageCounter } from '@/utils/pageCounter'
 import PageCounter from './PageCounter.vue'
 import PoliciesMenu from './PoliciesMenu.vue'
+import { HomeIcon } from '@heroicons/vue/24/outline'
 
 const store = useStore()
 

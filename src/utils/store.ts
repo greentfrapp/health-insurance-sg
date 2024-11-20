@@ -34,16 +34,24 @@ export const useStore = defineStore('store', {
     selectedDocument: null as null | string, // Ignored if selectedEvidenceId is not null
   }),
   getters: {
-    activeDocument(state): any {
+    activeDocumentPath(state): string | null {
       if (this.selectedEvidence) {
-        return state.documentCache[this.selectedEvidence.filepath]
+        return this.selectedEvidence.filepath
       }
       if (this.selectedDocument) {
-        return state.documentCache[this.selectedDocument]
+        return this.selectedDocument
       }
-      const docs = Object.values(state.documentCache)
+      const docs = Object.keys(state.documentCache)
       if (!docs.length) return null
       return docs[0]
+    },
+    activeDocument(state): any {
+      if (
+        this.activeDocumentPath &&
+        this.activeDocumentPath in state.documentCache
+      )
+        return state.documentCache[this.activeDocumentPath]
+      else return null
     },
     selectedEvidence(state) {
       if (state.selectedEvidenceId === null) return null

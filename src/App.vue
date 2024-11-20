@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col items-center">
-    <StreamAPI />
-    <ConnectionStatus />
+    <router-view />
   </div>
 </template>
 <script setup lang="ts">

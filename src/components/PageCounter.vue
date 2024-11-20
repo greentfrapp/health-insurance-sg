@@ -11,10 +11,7 @@
       <button
         v-for="page in props.numPages"
         class="w-full px-2 py-0.5 text-left hover:bg-neutral-100 rounded flex items-center gap-2"
-        @click.capture="
-          emit('goToPage', page)
-          showMenu = false
-        ">
+        @click.capture="goToPage">
         {{ page }}
       </button>
     </div>
@@ -36,6 +33,11 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['goToPage'])
+
+function goToPage() {
+  emit('goToPage')
+  showMenu.value = false
+}
 
 const showMenu = ref(false)
 
