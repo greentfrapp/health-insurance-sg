@@ -50,10 +50,10 @@
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue'
 import ConversationPlaceholder from './ConversationPlaceholder.vue'
-import Disclaimer from './Disclaimer.vue'
-import UserInputShortcuts from './UserInputShortcuts.vue'
+import Disclaimer from '@/components/Disclaimer.vue'
 import PDFContainer from '@/components/PDFContainer.vue'
 import UserInput from '@/components/UserInput.vue'
+import UserInputShortcuts from '@/components/UserInputShortcuts.vue'
 import { useStore } from '@/utils/store'
 import { APIResponse } from '@/utils/types'
 import { parseResponse } from '@/utils/utils'
