@@ -36,6 +36,6 @@ const suggestions = computed(() => {
 })
 
 const show = computed(() => {
-  return !store.streamBuffer && suggestions.value.length
+  return !store.streamingResponse && suggestions.value.length
 })
 </script>

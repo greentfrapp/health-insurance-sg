@@ -34,6 +34,7 @@ export const useStore = defineStore('store', {
     selectedEvidenceId: null as null | string,
     evidenceKey: null as null | string, // A random key for resetting evidence state
     selectedDocument: null as null | string, // Ignored if selectedEvidenceId is not null
+    streamingResponse: false,
   }),
   getters: {
     activeDocumentPath(state): string | null {
@@ -150,6 +151,7 @@ export const useStore = defineStore('store', {
     },
     async submitQuery(query: string) {
       this.addUserResponse(query)
+      this.streamingResponse = true
       // Get current policy
       let currentFilepath: string
       if (this.selectedEvidence) {
@@ -198,6 +200,7 @@ export const useStore = defineStore('store', {
           })
         }
       }
+      this.streamingResponse = false
     },
     goToEvidence(evidenceId: string) {
       this.selectedEvidenceId = evidenceId
