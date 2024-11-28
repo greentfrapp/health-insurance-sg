@@ -10,11 +10,13 @@ export async function streamAPI(
   query = 'What am I covered for if I am warded in the hospital?',
   history: ChatMessage[] = [],
   current_policy: string | null = null,
+  document_ids: string[] = [],
 ) {
   const body = JSON.stringify({
     query,
     history,
     current_policy,
+    document_ids,
   })
   const response = await fetch(API_URL + '/stream_query', {
     method: 'POST',

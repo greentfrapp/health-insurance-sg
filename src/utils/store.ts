@@ -22,11 +22,12 @@ export const DOCUMENT_POLICY_DICT = Object.fromEntries(
 
 export const useStore = defineStore('store', {
   state: () => ({
-    version: '0.0.7',
+    version: '0.0.8',
     connectingToServer: false,
     serverIsAlive: false,
     serverVersion: '',
     history: [] as ChatMessage[],
+    documentIds: [] as string[],
     streamBuffer: '',
     documentCache: {} as { [k: string]: any },
     evidenceCache: {} as { [k: string]: Evidence },
@@ -163,6 +164,7 @@ export const useStore = defineStore('store', {
         query,
         this.history,
         DOCUMENT_POLICY_DICT[currentFilepath],
+        this.documentIds,
       )
       while (true) {
         const result = await stream.read()
@@ -189,6 +191,10 @@ export const useStore = defineStore('store', {
           finalFormattedResponse.references.forEach((r) => {
             // TODO: Check for conflicting r.id
             this.evidenceCache[r.id] = r
+            const documentId = r.id.split(' ')[0]
+            if (!this.documentIds.includes(documentId)) {
+              this.documentIds.push(documentId)
+            }
           })
         }
       }
