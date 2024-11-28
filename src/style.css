@@ -8,6 +8,9 @@
 }
 
 .history-container {
+  strong {
+    font-weight: 500;
+  }
   /* Table styling */
   div.table-container {
     width: 100%;
@@ -49,6 +52,10 @@
   }
   td {
     border-top: 1px solid #d4d4d4;
+  }
+  td strong,
+  td:first-child {
+    font-weight: 500;
   }
   thead:first-child tr:first-child th:first-child,
   tbody:first-child tr:first-child td:first-child {
