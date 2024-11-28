@@ -30,7 +30,7 @@
             </div>
             <div
               v-if="store.streamBuffer"
-              class="border rounded-lg text-sm px-4 py-2 text-neutral-700 bg-neutral-100">
+              class="border rounded-lg text-sm px-4 py-2 text-neutral-700 bg-neutral-100 max-w-full overflow-hidden">
               {{ store.streamBuffer }}
             </div>
           </div>

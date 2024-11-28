@@ -10,6 +10,8 @@ export function parseResponse(response: APIResponse) {
     response.text.replaceAll('\n', '\n\n').replaceAll('|\n\n', '|\n'),
   )
   parsed = parsed.replaceAll('<p>', '<p class="mb-2">')
+  parsed = parsed.replaceAll('<table>', '<div class="table-container"><table>')
+  parsed = parsed.replaceAll('</table>', '</table></div>')
   const reCite = new RegExp('<cite>(.*?)</cite>', 'g')
   const reDoc = new RegExp('<doc>(.*?)</doc>', 'g')
   // const reQuote = new RegExp('<quote>quote(.*?)</quote>', 'g')
