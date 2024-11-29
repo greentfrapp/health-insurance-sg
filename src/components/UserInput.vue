@@ -3,23 +3,25 @@
     <div
       class="bg-white flex border-2 border-neutral-300 p-1 rounded-lg relative">
       <div
-        class="flex w-full"
+        class="flex flex-col w-full items-end gap-1"
         :class="[
           store.serverIsAlive && store.serverIsCompatible ? '' : 'invisible',
         ]">
-        <input
+        <textarea
+          resizable="false"
           type="text"
           v-model="query"
           ref="inputBox"
-          class="grow px-2 py-1"
+          class="w-full inline-block px-2 py-1 max-h-[200px] overflow-auto"
+          rows="1"
           placeholder="Press '/' to start typing"
-          @keyup.enter="submitQuery" />
+          @keyup.enter="submitQuery"></textarea>
         <div class="flex gap-1">
           <button
             @click="submitQuery"
-            :disabled="!query.length || loading"
+            :disabled="!query.length || store.streamingResponse"
             class="px-4 py-1 rounded-md bg-neutral-800 text-neutral-50 disabled:bg-neutral-100 disabled:text-neutral-300">
-            {{ loading ? 'Loading' : 'Submit' }}
+            {{ store.streamingResponse ? 'Loading' : 'Submit' }}
           </button>
           <SettingsMenu />
         </div>
@@ -27,7 +29,7 @@
       <div
         v-if="!store.serverIsAlive || !store.serverIsCompatible"
         @click="store.pingStatus"
-        class="w-full h-full absolute top-0 left-0 flex items-center px-4 gap-2 cursor-pointer">
+        class="w-full h-full absolute top-0 left-0 flex items-center justify-center px-4 gap-2 cursor-pointer">
         <ArrowPathIcon
           v-if="store.connectingToServer"
           class="w-4 h-4 animate-spin" />
@@ -37,6 +39,11 @@
     </div>
   </div>
 </template>
+<style scoped>
+textarea {
+  resize: none;
+}
+</style>
 <script setup lang="ts">
 import { ArrowPathIcon, ExclamationCircleIcon } from '@heroicons/vue/20/solid'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
@@ -46,13 +53,10 @@ import { useStore } from '@/utils/store'
 const store = useStore()
 
 const query = ref('')
-const loading = ref(false)
 
 async function submitQuery() {
-  loading.value = true
   store.submitQuery(query.value)
   query.value = ''
-  loading.value = false
 }
 
 const inputBox = ref<null | HTMLInputElement>(null)
@@ -65,8 +69,14 @@ function handleSlash(e: KeyboardEvent) {
   }
 }
 
+function resize() {
+  this.style.height = 'auto'
+  this.style.height = `${this.scrollHeight}px`
+}
+
 onMounted(() => {
   document.addEventListener('keypress', handleSlash)
+  inputBox.value.addEventListener('input', resize)
 })
 
 onUnmounted(() => {
