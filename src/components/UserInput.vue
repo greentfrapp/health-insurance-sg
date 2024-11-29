@@ -70,13 +70,14 @@ function handleSlash(e: KeyboardEvent) {
 }
 
 function resize() {
-  this.style.height = 'auto'
-  this.style.height = `${this.scrollHeight}px`
+  if (!inputBox.value) return
+  inputBox.value.style.height = 'auto'
+  inputBox.value.style.height = `${inputBox.value.scrollHeight}px`
 }
 
 onMounted(() => {
   document.addEventListener('keypress', handleSlash)
-  inputBox.value.addEventListener('input', resize)
+  if (inputBox.value) inputBox.value.addEventListener('input', resize)
 })
 
 onUnmounted(() => {
