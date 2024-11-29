@@ -1,6 +1,6 @@
 import { ChatMessage } from './types'
 
-const API_URL = 'http://localhost:8000'
+const API_URL = 'http://3.95.202.27'
 
 export async function statusAPI() {
   return await fetch(API_URL + '/status')
