@@ -1,6 +1,6 @@
 import { ChatMessage } from './types'
 
-const API_URL = 'http://3.95.202.27'
+const API_URL = 'https://insurance.pebblely.com'
 
 export async function statusAPI() {
   return await fetch(API_URL + '/status')
