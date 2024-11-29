@@ -168,15 +168,19 @@ export const useStore = defineStore('store', {
         DOCUMENT_POLICY_DICT[currentFilepath],
         this.documentIds,
       )
+      let buffer = ''
       while (true) {
         const result = await stream.read()
         if (!result) throw 'API Error'
-        if (result.done) break
         const value = new TextDecoder('utf-8').decode(result?.value)
-        const newValue = this.streamBuffer + value
-        const parsedResponse = parseStreamResponse(newValue)
+        buffer = buffer + value
+        if (buffer.includes('Final Response:') && !result.done) {
+          continue // Make sure that stream is complete before parsing into JSON
+        }
+        const parsedResponse = parseStreamResponse(buffer)
         if (typeof parsedResponse === 'string') {
           this.streamBuffer = parsedResponse
+          buffer = parsedResponse
         } else {
           parsedResponse.forEach((m) => {
             this.history.push(m)
@@ -199,6 +203,7 @@ export const useStore = defineStore('store', {
             }
           })
         }
+        if (result.done) break
       }
       this.streamingResponse = false
     },
