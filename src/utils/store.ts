@@ -35,6 +35,7 @@ export const useStore = defineStore('store', {
     evidenceKey: null as null | string, // A random key for resetting evidence state
     selectedDocument: null as null | string, // Ignored if selectedEvidenceId is not null
     streamingResponse: false,
+    apiError: null as null | string,
   }),
   getters: {
     activeDocumentPath(state): string | null {
@@ -150,6 +151,7 @@ export const useStore = defineStore('store', {
       })
     },
     async submitQuery(query: string) {
+      this.apiError = ''
       this.addUserResponse(query)
       this.streamingResponse = true
       // Get current policy
@@ -162,48 +164,67 @@ export const useStore = defineStore('store', {
         currentFilepath = Object.keys(this.documentCache)[0]
       }
       // Run streamAPI
-      const stream = await streamAPI(
-        query,
-        this.history,
-        DOCUMENT_POLICY_DICT[currentFilepath],
-        this.documentIds,
-      )
-      let buffer = ''
-      while (true) {
-        const result = await stream.read()
-        if (!result) throw 'API Error'
-        const value = new TextDecoder('utf-8').decode(result?.value)
-        buffer = buffer + value
-        if (buffer.includes('Final Response:') && !result.done) {
-          continue // Make sure that stream is complete before parsing into JSON
+      try {
+        // Throw an error if no response is read for a certain duration
+        const timeoutTimer = setTimeout(() => {
+          this.handleAPIError('API timeout')
+        }, 2000)
+        const stream = await streamAPI(
+          query,
+          this.history,
+          DOCUMENT_POLICY_DICT[currentFilepath],
+          this.documentIds,
+        )
+        clearTimeout(timeoutTimer)
+        if (this.apiError) return
+        let buffer = ''
+        while (true) {
+          // Throw an error if no response is read for a certain duration
+          const timeoutTimer = setTimeout(() => {
+            this.handleAPIError('API timeout')
+          }, 2000)
+          const result = await stream.read()
+          clearTimeout(timeoutTimer)
+          if (this.apiError) return
+          if (!result) throw 'API error'
+          const value = new TextDecoder('utf-8').decode(result?.value)
+          buffer = buffer + value
+          if (buffer.includes('Final Response:') && !result.done) {
+            continue // Make sure that stream is complete before parsing into JSON
+          }
+          if (result.done && buffer === '{"detail":"Not Found"}') {
+            throw 'API not found'
+          }
+          const parsedResponse = parseStreamResponse(buffer)
+          if (typeof parsedResponse === 'string') {
+            this.streamBuffer = parsedResponse
+            buffer = parsedResponse
+          } else {
+            parsedResponse.forEach((m) => {
+              this.history.push(m)
+            })
+            this.streamBuffer = ''
+            // Load PDFs
+            const finalFormattedResponse = parsedResponse[
+              parsedResponse.length - 1
+            ].formattedContent as APIResponse
+            finalFormattedResponse.references
+              .map((r) => r.filepath)
+              .filter((v, i, arr) => arr.indexOf(v) === i)
+              .forEach(this.addDocument)
+            finalFormattedResponse.references.forEach((r) => {
+              // TODO: Check for conflicting r.id
+              this.evidenceCache[r.id] = r
+              const documentId = r.id.split(' ')[0]
+              if (!this.documentIds.includes(documentId)) {
+                this.documentIds.push(documentId)
+              }
+            })
+          }
+          if (result.done) break
         }
-        const parsedResponse = parseStreamResponse(buffer)
-        if (typeof parsedResponse === 'string') {
-          this.streamBuffer = parsedResponse
-          buffer = parsedResponse
-        } else {
-          parsedResponse.forEach((m) => {
-            this.history.push(m)
-          })
-          this.streamBuffer = ''
-          // Load PDFs
-          const finalFormattedResponse = parsedResponse[
-            parsedResponse.length - 1
-          ].formattedContent as APIResponse
-          finalFormattedResponse.references
-            .map((r) => r.filepath)
-            .filter((v, i, arr) => arr.indexOf(v) === i)
-            .forEach(this.addDocument)
-          finalFormattedResponse.references.forEach((r) => {
-            // TODO: Check for conflicting r.id
-            this.evidenceCache[r.id] = r
-            const documentId = r.id.split(' ')[0]
-            if (!this.documentIds.includes(documentId)) {
-              this.documentIds.push(documentId)
-            }
-          })
-        }
-        if (result.done) break
+      } catch (e: any) {
+        this.handleAPIError(e)
       }
       this.streamingResponse = false
     },
@@ -215,6 +236,10 @@ export const useStore = defineStore('store', {
       this.addDocument(url)
       this.selectedEvidenceId = null
       this.selectedDocument = url
+    },
+    handleAPIError(error: any) {
+      this.streamBuffer = ''
+      this.apiError = error.toString()
     },
   },
 })

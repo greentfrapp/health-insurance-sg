@@ -33,6 +33,9 @@
               class="border rounded-lg text-sm px-4 py-2 text-neutral-700 bg-neutral-100 max-w-full overflow-hidden">
               {{ store.streamBuffer }}
             </div>
+            <ErrorMessage v-else-if="store.apiError">
+              {{ store.apiError }}
+            </ErrorMessage>
           </div>
           <UserInputShortcuts />
           <UserInput />
@@ -50,6 +53,7 @@
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue'
 import ConversationPlaceholder from './ConversationPlaceholder.vue'
+import ErrorMessage from './ErrorMessage.vue'
 import Disclaimer from '@/components/Disclaimer.vue'
 import PDFContainer from '@/components/PDFContainer.vue'
 import UserInput from '@/components/UserInput.vue'
