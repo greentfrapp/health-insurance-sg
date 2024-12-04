@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute top-2 right-2 bg-white px-2 py-1 border shadow rounded text-sm flex items-center justify-center gap-2 text-neutral-600 cursor-pointer"
+    class="hidden absolute top-2 right-2 bg-white px-2 py-1 border shadow rounded text-sm flex items-center justify-center gap-2 text-neutral-600 cursor-pointer"
     @click="store.pingStatus">
     <ArrowPathIcon
       v-if="store.connectingToServer"
