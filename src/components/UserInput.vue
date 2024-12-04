@@ -23,7 +23,7 @@
             class="px-4 py-1 rounded-md bg-neutral-800 text-neutral-50 disabled:bg-neutral-100 disabled:text-neutral-300">
             {{ store.streamingResponse ? 'Loading' : 'Submit' }}
           </button>
-          <SettingsMenu />
+          <!-- <SettingsMenu /> -->
         </div>
       </div>
       <div
@@ -47,7 +47,7 @@ textarea {
 <script setup lang="ts">
 import { ArrowPathIcon, ExclamationCircleIcon } from '@heroicons/vue/20/solid'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import SettingsMenu from '@/components/SettingsMenu.vue'
+// import SettingsMenu from '@/components/SettingsMenu.vue'
 import { useStore } from '@/utils/store'
 
 const store = useStore()
