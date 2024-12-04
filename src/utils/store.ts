@@ -36,6 +36,7 @@ export const useStore = defineStore('store', {
     selectedDocument: null as null | string, // Ignored if selectedEvidenceId is not null
     streamingResponse: false,
     apiError: null as null | string,
+    apiTimeout: 10000,
   }),
   getters: {
     activeDocumentPath(state): string | null {
@@ -168,7 +169,7 @@ export const useStore = defineStore('store', {
         // Throw an error if no response is read for a certain duration
         const timeoutTimer = setTimeout(() => {
           this.handleAPIError('API timeout')
-        }, 2000)
+        }, this.apiTimeout)
         const stream = await streamAPI(
           query,
           this.history,
@@ -182,7 +183,7 @@ export const useStore = defineStore('store', {
           // Throw an error if no response is read for a certain duration
           const timeoutTimer = setTimeout(() => {
             this.handleAPIError('API timeout')
-          }, 2000)
+          }, this.apiTimeout)
           const result = await stream.read()
           clearTimeout(timeoutTimer)
           if (this.apiError) return
