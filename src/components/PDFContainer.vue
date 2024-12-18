@@ -104,10 +104,10 @@ function scrollToPage(page: number) {
 
 let foundQuote = false
 const padding = 200
-let searchingPages = ref([] as number[])
+const searchingPages = ref([] as number[])
 const movingToBookmark = ref(false)
 const searching = computed(() => {
-  return !!searchingPages.value.length || movingToBookmark.value
+  return searchingPages.value.length > 0 || movingToBookmark.value
 })
 watch(
   () => store.evidenceKey,
@@ -124,9 +124,11 @@ watch(
     const pages = store.selectedEvidence.pages
     if (store.selectedEvidence.quote) {
       // Trigger search and highlight
-      searchingPages.value = pages
-      innerQuote.value = store.selectedEvidence.quote
       foundQuote = false
+      searchingPages.value = pages
+      // Give some time for pdf to load before searching
+      await new Promise((r) => setTimeout(r, 1000))
+      innerQuote.value = store.selectedEvidence.quote
     } else {
       // Scroll to nearest page
       scrollToPage(Math.min(...pages))
@@ -136,7 +138,7 @@ watch(
 
 function onHighlight(payload: HighlightEventPayload) {
   if (!container.value) return
-  searchingPages.value = searchingPages.value.filter((p) => p !== payload.page)
+  if (!searchingPages.value.length) return
   if (payload.matches && payload.matches[0]) {
     foundQuote = true
     const match = payload.matches[0]
@@ -155,6 +157,7 @@ function onHighlight(payload: HighlightEventPayload) {
       scrollTop = newMaxY
     }
   }
+  searchingPages.value = searchingPages.value.filter((p) => p !== payload.page)
   // If no more pages to search, start scrolling
   if (!searchingPages.value.length) {
     if (foundQuote) {
