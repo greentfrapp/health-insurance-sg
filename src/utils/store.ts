@@ -36,7 +36,7 @@ export const useStore = defineStore('store', {
     selectedDocument: null as null | string, // Ignored if selectedEvidenceId is not null
     streamingResponse: false,
     apiError: null as null | string,
-    apiTimeout: 10000,
+    apiTimeout: 30000,
   }),
   getters: {
     activeDocumentPath(state): string | null {
