@@ -1,4 +1,5 @@
 import { usePDF } from '@tato30/vue-pdf'
+import { RemovableRef, useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { v4 as uuidv4 } from 'uuid'
 import { statusAPI, streamAPI } from '@/utils/api'
@@ -37,6 +38,10 @@ export const useStore = defineStore('store', {
     streamingResponse: false,
     apiError: null as null | string,
     apiTimeout: 30000,
+    showOnboardingMessage: useStorage(
+      'showOnboardingMessage',
+      true,
+    ) as RemovableRef<boolean>,
   }),
   getters: {
     activeDocumentPath(state): string | null {

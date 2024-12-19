@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="space-y-2 p-1">
     <div
       class="bg-white flex border-2 border-neutral-300 p-1 rounded-lg relative">
       <div
@@ -37,6 +37,7 @@
         {{ store.connectingToServer ? 'Connecting...' : statusMessage }}
       </div>
     </div>
+    <Disclaimer />
   </div>
 </template>
 <style scoped>
@@ -47,6 +48,7 @@ textarea {
 <script setup lang="ts">
 import { ArrowPathIcon, ExclamationCircleIcon } from '@heroicons/vue/20/solid'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import Disclaimer from './Disclaimer.vue'
 // import SettingsMenu from '@/components/SettingsMenu.vue'
 import { useStore } from '@/utils/store'
 

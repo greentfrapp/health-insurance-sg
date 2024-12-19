@@ -5,10 +5,10 @@
       <span>Ask questions about</span>
       <span class="font-semibold"> Singapore's Integrated Shield Plans </span>
     </h1>
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <button
         v-for="plan in plans"
-        class="border shadow rounded-lg w-72 h-28 p-4 flex gap-4 items-center text-left hover:bg-neutral-50"
+        class="border shadow rounded-lg max-w-full w-72 h-28 p-4 flex gap-4 items-center text-left hover:bg-neutral-50"
         @click="loadDocument(plan.document)">
         <img :src="plan.logo" class="w-12 h-12 shrink-0 rounded-lg shadow" />
         <div>
@@ -27,10 +27,12 @@
       Information for each plan was taken from the respective company websites
       on 28 October 2024.
     </div>
+    <OnboardingMessage v-if="store.showOnboardingMessage" />
   </div>
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import OnboardingMessage from '@/components/OnboardingMessage.vue'
 import { useStore } from '@/utils/store'
 
 const plans = [

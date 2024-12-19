@@ -2,7 +2,6 @@
   <div class="flex p-10 max-h-screen justify-center w-screen">
     <div class="flex w-full gap-4 max-w-full" :style="{ width: '1280px' }">
       <div class="shrink-0 flex flex-col w-[65ch] space-y-4">
-        <Disclaimer />
         <div
           v-if="store.history.filter((s) => !s.hidden).length === 0"
           class="shrink grow flex items-center justify-center">
@@ -54,7 +53,6 @@
 import { nextTick, ref, watch } from 'vue'
 import ConversationPlaceholder from './ConversationPlaceholder.vue'
 import ErrorMessage from './ErrorMessage.vue'
-import Disclaimer from '@/components/Disclaimer.vue'
 import PDFContainer from '@/components/PDFContainer.vue'
 import UserInput from '@/components/UserInput.vue'
 import UserInputShortcuts from '@/components/UserInputShortcuts.vue'
