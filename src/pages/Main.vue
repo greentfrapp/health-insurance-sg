@@ -1,6 +1,7 @@
 <template>
-  <div class="flex flex-col items-center">
-    <StreamAPI />
+  <div class="h-screen flex flex-col overflow-hidden">
+    <Navbar class="shrink-0" />
+    <StreamAPI class="grow" />
     <ConnectionStatus />
   </div>
 </template>
@@ -8,6 +9,7 @@
 import { onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ConnectionStatus from '@/components/ConnectionStatus.vue'
+import Navbar from '@/components/Navbar.vue'
 import StreamAPI from '@/components/StreamAPI.vue'
 import { useStore } from '@/utils/store'
 
@@ -30,6 +32,7 @@ watch(
 )
 
 onMounted(() => {
+  store.history = []
   if (route.query.doc) {
     store.openDocument(route.query.doc as string)
   }

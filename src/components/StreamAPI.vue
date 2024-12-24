@@ -1,5 +1,5 @@
 <template>
-  <div class="flex p-10 max-h-screen justify-center w-screen">
+  <div class="flex pb-4 px-10 h-full justify-center w-screen overflow-hidden">
     <div class="flex w-full gap-4 max-w-full" :style="{ width: '1280px' }">
       <div class="shrink-0 flex flex-col w-[65ch] space-y-4">
         <div

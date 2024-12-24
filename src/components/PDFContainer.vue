@@ -3,17 +3,17 @@
     <div
       v-if="store.activeDocument && store.activeDocument.pages"
       class="h-full relative flex flex-col">
-      <div class="relative flex justify-between items-center py-2">
-        <router-link
+      <div class="relative flex justify-center items-center pb-2">
+        <!-- <router-link
           to="/"
           class="bg-white text-neutral-700 w-6 h-6 flex items-center justify-center rounded-md shadow">
           <HomeIcon class="w-3 h-3" />
-        </router-link>
+        </router-link> -->
         <PageCounter
           :current-page="currentPage"
           :num-pages="numPages"
           @goToPage="scrollToPage" />
-        <PoliciesMenu />
+        <!-- <PoliciesMenu /> -->
       </div>
       <div
         ref="container"
