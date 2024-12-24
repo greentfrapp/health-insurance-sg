@@ -2,7 +2,7 @@ import { usePDF } from '@tato30/vue-pdf'
 import { RemovableRef, useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { v4 as uuidv4 } from 'uuid'
-import { statusAPI, streamAPI } from '@/utils/api'
+import { statusAPI, streamAPIv2 } from '@/utils/api'
 import policyDocumentsJSON from '@/utils/policyDocuments.json'
 import { APIResponse, ChatMessage, Evidence } from '@/utils/types'
 import { parseStreamResponse } from '@/utils/utils'
@@ -175,7 +175,7 @@ export const useStore = defineStore('store', {
         const timeoutTimer = setTimeout(() => {
           this.handleAPIError('API timeout')
         }, this.apiTimeout)
-        const stream = await streamAPI(
+        const stream = await streamAPIv2(
           query,
           this.history,
           DOCUMENT_POLICY_DICT[currentFilepath],
