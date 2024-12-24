@@ -25,9 +25,10 @@
           </div>
         </button>
       </div>
-      <div class="text-neutral-600">
-        Information for each plan was taken from the respective company websites
-        on 28 October 2024.
+      <div class="text-neutral-600 text-center">
+        Plan information was taken from the respective company websites on 28
+        October 2024.<br />ISPs will be affected by changes to MediShield Life
+        starting April 2025.
       </div>
       <Popup
         v-if="store.showOnboardingMessage"
@@ -73,8 +74,8 @@ const plans = [
   {
     logo: 'logos/NTUC Income.jpg',
     provider: 'NTUC Income',
-    plans: ['IncomeShield Standard', 'Enhanced IncomeShield'],
-    document: 'Income/ISPs/IncomeShield Standard Brochure (Nov 2024).pdf',
+    plans: ['Enhanced IncomeShield'],
+    document: 'Income/ISPs/Enhanced IncomeShield Brochure (Nov 2024).pdf',
   },
   {
     logo: 'logos/Prudential.jpg',
