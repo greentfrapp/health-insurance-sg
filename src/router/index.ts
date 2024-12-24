@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import About from '@/pages/About.vue'
 import Main from '@/pages/Main.vue'
 import Onboard from '@/pages/Onboard.vue'
 
@@ -12,6 +13,11 @@ export const routes = [
     path: '/app',
     name: 'App',
     component: Main,
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
   },
 ]
 
