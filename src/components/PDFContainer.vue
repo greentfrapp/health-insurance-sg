@@ -1,9 +1,9 @@
 <template>
-  <div class="relative flex flex-col">
+  <div class="relative flex flex-col overflow-hidden">
     <div
       v-if="store.activeDocument && store.activeDocument.pages"
       class="h-full relative flex flex-col">
-      <div class="relative flex justify-center items-center pb-2">
+      <div class="relative flex justify-center items-center pb-2 gap-4">
         <!-- <router-link
           to="/"
           class="bg-white text-neutral-700 w-6 h-6 flex items-center justify-center rounded-md shadow">
@@ -14,6 +14,16 @@
           :num-pages="numPages"
           @goToPage="scrollToPage" />
         <!-- <PoliciesMenu /> -->
+        <div
+          class="text-xs px-3 py-1 bg-white rounded-full shadow cursor-pointer flex gap-2">
+          <button @click="scale -= increment">
+            <MagnifyingGlassMinusIcon class="w-3.5 h-3.5" />
+          </button>
+          <button @click="scale = 0.8">{{ (scale * 100).toFixed(0) }}%</button>
+          <button @click="scale += increment">
+            <MagnifyingGlassPlusIcon class="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
       <div
         ref="container"
@@ -21,7 +31,7 @@
         <div
           v-for="page in store.activeDocument.pages"
           :id="`page${page}`"
-          class="pageContainer shadow">
+          class="pageContainer shadow h-auto mx-auto w-max">
           <VuePDF
             ref="vuePDF"
             :pdf="store.activeDocument.pdf"
@@ -36,9 +46,9 @@
               completeWords: false,
               ignoreCase: true,
             }"
-            fit-parent
             @highlight="onHighlight"
-            :page="page" />
+            :page="page"
+            :scale="scale" />
         </div>
       </div>
       <div
@@ -71,12 +81,16 @@
 }
 </style>
 <script setup lang="ts">
-import { HomeIcon } from '@heroicons/vue/24/outline'
+// import { HomeIcon } from '@heroicons/vue/24/outline'
+import {
+  MagnifyingGlassMinusIcon,
+  MagnifyingGlassPlusIcon,
+} from '@heroicons/vue/20/solid'
 import { HighlightEventPayload, VuePDF } from '@tato30/vue-pdf'
 import '@tato30/vue-pdf/style.css'
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import PageCounter from './PageCounter.vue'
-import PoliciesMenu from './PoliciesMenu.vue'
+// import PoliciesMenu from './PoliciesMenu.vue'
 import { usePageCounter } from '@/utils/pageCounter'
 import { useStore } from '@/utils/store'
 
@@ -103,6 +117,9 @@ function scrollToPage(page: number) {
 }
 
 let foundQuote = false
+const ogScale = 0.8
+const increment = 0.1
+const scale = ref(ogScale)
 const padding = 200
 const searchingPages = ref([] as number[])
 const movingToBookmark = ref(false)
@@ -112,6 +129,7 @@ const searching = computed(() => {
 watch(
   () => store.evidenceKey,
   async () => {
+    // scale.value = ogScale
     if (store.selectedEvidenceId === null) return
     // Reset highlights
     innerQuote.value = ''
@@ -183,10 +201,12 @@ const numPages = computed(() =>
 watch(
   numPages,
   async () => {
+    // scale.value = ogScale
     await nextTick()
     if (!container.value) return
     pageContainers = document.getElementsByClassName('pageContainer')
     usePageCounter(container.value, pageContainers, currentPage)
+    getPDFWidth()
   },
   { immediate: true },
 )
@@ -194,13 +214,19 @@ watch(
 // Resize PDF if window is resized
 const vuePDF = ref<null | typeof VuePDF>(null)
 function reloadPDF() {
-  if (vuePDF.value)
+  if (vuePDF.value) {
     vuePDF.value.map((v: any) => {
       v.reload()
     })
+  }
 }
 
-onMounted(() => {
+function getPDFWidth() {
+  const page = document.getElementById('page1')
+  if (!page) return
+}
+
+onMounted(async () => {
   window.addEventListener('resize', reloadPDF)
 })
 
