@@ -56,8 +56,8 @@ const store = useStore()
 
 const query = ref('')
 
-async function submitQuery(e: KeyboardEvent) {
-  if (e.shiftKey) return
+async function submitQuery(e: Event) {
+  if (e instanceof KeyboardEvent && e.shiftKey) return
   e.preventDefault()
   if (store.streamingResponse) return
   let trimmedQuery = query.value.trim()
