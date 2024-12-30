@@ -15,11 +15,11 @@
           class="w-full inline-block px-2 py-1 max-h-[200px] overflow-auto"
           rows="1"
           placeholder="Press '/' to start typing"
-          @keyup.enter="submitQuery"></textarea>
+          @keydown.enter="submitQuery"></textarea>
         <div class="flex gap-1">
           <button
             @click="submitQuery"
-            :disabled="!query.length || store.streamingResponse"
+            :disabled="!query.trim().length || store.streamingResponse"
             class="px-4 py-1 rounded-md bg-neutral-800 text-neutral-50 disabled:bg-neutral-100 disabled:text-neutral-300">
             {{ store.streamingResponse ? 'Loading' : 'Submit' }}
           </button>
@@ -56,8 +56,13 @@ const store = useStore()
 
 const query = ref('')
 
-async function submitQuery() {
-  store.submitQuery(query.value)
+async function submitQuery(e: KeyboardEvent) {
+  if (e.shiftKey) return
+  e.preventDefault()
+  if (store.streamingResponse) return
+  let trimmedQuery = query.value.trim()
+  if (!trimmedQuery) return
+  store.submitQuery(trimmedQuery)
   query.value = ''
 }
 
