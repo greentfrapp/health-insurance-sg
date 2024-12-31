@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-neutral-700 text-white min-w-[30%] max-w-[90%] px-4 py-2 rounded-md">
+    class="user-response bg-neutral-700 text-white min-w-[30%] max-w-[90%] px-4 py-2 rounded-md">
     <div v-html="parsed"></div>
   </div>
 </template>

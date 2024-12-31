@@ -79,5 +79,16 @@
   }
   ol {
     list-style-type: decimal;
+    margin-left: 1rem;
+  }
+
+  .user-response {
+    ul {
+      padding-bottom: 0;
+    }
+
+    li::marker {
+      color: #a3a3a3;
+    }
   }
 }
