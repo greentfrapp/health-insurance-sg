@@ -160,6 +160,7 @@ export const useStore = defineStore('store', {
       this.apiError = ''
       this.addUserResponse(query)
       this.streamingResponse = true
+      this.streamBuffer = 'Thinking...'
       // Get current policy
       let currentFilepath: string
       if (this.selectedEvidence) {
