@@ -178,7 +178,7 @@ export const useStore = defineStore('store', {
         }, this.apiTimeout)
         const stream = await streamAPIv2(
           query,
-          this.history,
+          this.history.slice(0, -1),
           DOCUMENT_POLICY_DICT[currentFilepath],
           this.documentIds,
         )
