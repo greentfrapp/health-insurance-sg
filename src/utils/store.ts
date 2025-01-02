@@ -112,6 +112,7 @@ export const useStore = defineStore('store', {
       el.click()
     },
     resetHistory() {
+      this.evidenceCache = {}
       this.history = []
     },
     async pingStatus() {

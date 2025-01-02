@@ -33,6 +33,9 @@ watch(
 )
 
 onMounted(() => {
+  if (route.query.doc) {
+    store.openDocument(route.query.doc as string)
+  }
   if (store.activePolicy === 'MediShield Life') {
     MediShieldLifeResponse.references
       .map((r) => r.filepath)
@@ -59,10 +62,7 @@ onMounted(() => {
       },
     ]
   } else {
-    store.history = []
-  }
-  if (route.query.doc) {
-    store.openDocument(route.query.doc as string)
+    store.resetHistory()
   }
 })
 </script>
