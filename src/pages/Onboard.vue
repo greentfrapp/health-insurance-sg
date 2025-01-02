@@ -26,8 +26,8 @@
         </button>
       </div>
       <div class="text-neutral-600 text-center">
-        Plan information was taken from the respective company websites on 28
-        October 2024.<br />ISPs will be affected by changes to MediShield Life
+        Plan information was taken from the respective company websites on 2
+        January 2025.<br />ISPs will be affected by changes to MediShield Life
         starting April 2025.
       </div>
       <Popup
