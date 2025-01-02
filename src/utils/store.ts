@@ -214,6 +214,7 @@ export const useStore = defineStore('store', {
             const finalFormattedResponse = parsedResponse[
               parsedResponse.length - 1
             ].formattedContent as APIResponse
+            console.log(finalFormattedResponse)
             finalFormattedResponse.references
               .map((r) => r.filepath)
               .filter((v, i, arr) => arr.indexOf(v) === i)
