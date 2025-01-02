@@ -27,10 +27,7 @@
           class="underline">
           MediShield Life and ISPs
         </button>
-        easier.
-        <router-link to="/" class="underline"
-          >Select the company you are interested in</router-link
-        >, or start with
+        easier. Select the company you are interested in, or start with
         <button
           @click="
             loadDocument(
