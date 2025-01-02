@@ -1,22 +1,11 @@
 {
     "question": "What is MediShield Life?",
-    "text": "MediShield Life is a basic health insurance plan for all Singapore Citizens and Permanent Residents, protecting against large medical bills regardless of age or pre-existing conditions <cite> <doc>bb3bc5b3Ministry2024 pages 1-3 quote1</doc> <doc>bb3bc5b3Ministry2024 pages 1-5 quote1</doc></cite>.  Even with pre-existing conditions, coverage is provided, though an additional premium may apply for the first ten years <cite> <doc>bb3bc5b3Ministry2024 pages 1-3 quote2</doc><doc>bb3bc5b3Ministry2024 pages 1-3 quote3</doc></cite>.  MediSave funds can be used to pay premiums, including any additional amounts <cite> <doc>bb3bc5b3Ministry2024 pages 1-3 quote4</doc></cite>.\n\nThis basic plan covers hospitalizations and selected outpatient treatments <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote3</doc></cite>.  While it covers both subsidized and non-subsidized treatments, the latter will have a smaller portion covered <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote4</doc><doc>bb3bc5b3Ministry2024 pages 1-5 quote5</doc></cite>.  Claims involve deductibles and co-insurance <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote7</doc><doc>bb3bc5b3Ministry2024 pages 1-5 quote8</doc></cite>.  To enhance coverage, Integrated Shield Plans (IPs) can supplement MediShield Life <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote9</doc></cite>.  The government provides subsidies to keep premiums affordable <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote2</doc></cite>.  No one loses coverage due to inability to pay premiums <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote10</doc></cite>.",
+    "text": "MediShield Life is a basic health insurance plan designed to protect all Singapore Citizens and Permanent Residents against substantial medical bills <cite> <doc>5f47555dMinistry2024 pages 1-5 quote1</doc> <doc>5f47555dMinistry2025 pages 1-3 quote1</doc></cite>.  It covers hospitalizations and selected outpatient treatments <cite> <doc>5f47555dMinistry2024 pages 1-5 quote3</doc> <doc>5f47555dMinistry2025 pages 1-3 quote1</doc></cite>, including subsidized and non-subsidized treatments, although the latter will have less coverage <cite> <doc>5f47555dMinistry2024 pages 1-5 quote4</doc><doc>5f47555dMinistry2024 pages 1-5 quote5</doc></cite>.  Coverage applies regardless of age or pre-existing conditions <cite> <doc>5f47555dMinistry2024 pages 1-5 quote1</doc> <doc>5f47555dMinistry2025 pages 1-3 quote2</doc></cite>, although those with serious pre-existing conditions may pay additional premiums for the first ten years <cite> <doc>5f47555dMinistry2025 pages 1-3 quote3</doc> <doc>5f47555dMinistry2024 pages 8-13 quote2</doc></cite>.\n\nPremiums are payable annually and can be paid using MediSave <cite> <doc>5f47555dMinistry2024 pages 5-8 quote8</doc> <doc>5f47555dMinistry2025 pages 1-3 quote4</doc></cite>.  The government provides subsidies to keep premiums affordable <cite> <doc>5f47555dMinistry2024 pages 1-5 quote2</doc> <doc>5f47555dMinistry2024 pages 8-13 quote5</doc></cite>, and no one loses coverage due to inability to pay <cite> <doc>5f47555dMinistry2024 pages 1-5 quote10</doc> <doc>5f47555dMinistry2024 pages 13-17 quote4</doc></cite>.  Claims involve deductibles and co-insurance <cite> <doc>5f47555dMinistry2024 pages 1-5 quote7</doc><doc>5f47555dMinistry2024 pages 1-5 quote8</doc> <doc>5f47555dMinistry2024 pages 17-22 quote1</doc><doc>5f47555dMinistry2024 pages 17-22 quote3</doc></cite>, and Integrated Shield Plans (IPs) can supplement MediShield Life coverage for broader protection <cite> <doc>5f47555dMinistry2024 pages 1-5 quote9</doc> <doc>5f47555dMinistry2025 pages 1-5 quote1</doc></cite>.",
     "references": [
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-3 quote1",
-            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Nov 2024).pdf",
-            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2024): 1-7.",
-            "pages": [
-                1,
-                2,
-                3
-            ],
-            "quote": "Why are there changes to cancer treatment financing?"
-        },
-        {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote1",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "id": "5f47555dMinistry2024 pages 1-5 quote1",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
             "pages": [
                 1,
                 2,
@@ -24,12 +13,86 @@
                 4,
                 5
             ],
-            "quote": "Integrated Shield Plan IP is a private medical insurance plan, offered by private insurers, that provides you with additional coverage on top of what you already have under MediShield Life."
+            "quote": "MediShield Life is an individual basic medical insurance scheme that protects all Singapore Citizens and Permanent Residents against large medical bills for life, regardless of age or health condition."
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-3 quote2",
-            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Nov 2024).pdf",
-            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2024): 1-7.",
+            "id": "5f47555dMinistry2025 pages 1-3 quote1",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Jan 2025).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2025): 1-7.",
+            "pages": [
+                1,
+                2,
+                3
+            ],
+            "quote": "The changes to cancer treatment financing allow us to negotiate lower prices for cancer drugs, and ensure that cancer treatment costs and insurance premiums remain affordable for Singaporeans in the long term."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 1-5 quote3",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "MediShield Life covers expenses incurred for hospitalisations and selected approved outpatient treatments, such as kidney dialysis, cancer drug treatment and radiotherapy for cancer."
+        },
+        {
+            "id": "5f47555dMinistry2025 pages 1-3 quote1",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Jan 2025).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2025): 1-7.",
+            "pages": [
+                1,
+                2,
+                3
+            ],
+            "quote": "The changes to cancer treatment financing allow us to negotiate lower prices for cancer drugs, and ensure that cancer treatment costs and insurance premiums remain affordable for Singaporeans in the long term."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 1-5 quote4",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "Patients who seek non -subsidised treatments in Class A/B1/B2+ wards in public hospitals or private hospitals will also be able to benefit from MediShield Life."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 1-5 quote5",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "However, as such non -subsidised bills are much higher, MediShield Life will cover a smaller portion of the bill."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 1-5 quote1",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "MediShield Life is an individual basic medical insurance scheme that protects all Singapore Citizens and Permanent Residents against large medical bills for life, regardless of age or health condition."
+        },
+        {
+            "id": "5f47555dMinistry2025 pages 1-3 quote2",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Jan 2025).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2025): 1-7.",
             "pages": [
                 1,
                 2,
@@ -38,9 +101,9 @@
             "quote": "MediShield Life and MediSave will only cover treatments on the Cancer Drug List CDL from 1 September 2022."
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-3 quote3",
-            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Nov 2024).pdf",
-            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2024): 1-7.",
+            "id": "5f47555dMinistry2025 pages 1-3 quote3",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Jan 2025).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2025): 1-7.",
             "pages": [
                 1,
                 2,
@@ -49,9 +112,35 @@
             "quote": "The CDL will only come into effect for Integrated Shield Plans (IPs) on 1 Apr 2023, upon renewal or application."
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-3 quote4",
-            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Nov 2024).pdf",
-            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2024): 1-7.",
+            "id": "5f47555dMinistry2024 pages 8-13 quote2",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13
+            ],
+            "quote": "Only those with serious pre-existing medical conditions need to pay a nominal Additional Premium of 30% for 10 years, in addition to the standard Med iShield Life premiums."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 5-8 quote8",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                5,
+                6,
+                7,
+                8
+            ],
+            "quote": "The annual premiums can be fully paid using MediSave."
+        },
+        {
+            "id": "5f47555dMinistry2025 pages 1-3 quote4",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Jan 2025).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2025): 1-7.",
             "pages": [
                 1,
                 2,
@@ -60,9 +149,9 @@
             "quote": "We encourage you to discuss with your doctor if there are suitable alternatives on the Cancer Drug List CDL that are subsidised and covered by insurance."
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote3",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "id": "5f47555dMinistry2024 pages 1-5 quote2",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
             "pages": [
                 1,
                 2,
@@ -70,12 +159,26 @@
                 4,
                 5
             ],
-            "quote": "MediShield Life is included in all Integrated Shield Plans."
+            "quote": "The Government provides various premium subsidies and support measures to ensure that MediShield Life premiums remain affordable."
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote4",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "id": "5f47555dMinistry2024 pages 8-13 quote5",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13
+            ],
+            "quote": "Premium Subsidies are provided to low - to middle-income Singapore Citizens and Permanent Residents with a household monthly income per person of $3,600 and below and living in residences with an Annual Value of $2 5,000 and below."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 1-5 quote10",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
             "pages": [
                 1,
                 2,
@@ -83,12 +186,25 @@
                 4,
                 5
             ],
-            "quote": "The private insurer you have taken the plan out with acts as your single point of contact."
+            "quote": "No one will lose MediShield Life coverage because he cannot afford to pay his insurance premiums."
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote5",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "id": "5f47555dMinistry2024 pages 13-17 quote4",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "quote": "No one will lose MediShield Life coverage due to financial difficulties."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 1-5 quote7",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
             "pages": [
                 1,
                 2,
@@ -96,12 +212,12 @@
                 4,
                 5
             ],
-            "quote": "The MediShield Life component of your Integrated Shield Plan is fully payable by MediSave."
+            "quote": "What is the deductible?"
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote7",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "id": "5f47555dMinistry2024 pages 1-5 quote8",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
             "pages": [
                 1,
                 2,
@@ -109,12 +225,40 @@
                 4,
                 5
             ],
-            "quote": "To check if you already have an Integrated Shield Plan, you can log in to the Healthcare dashboard ↗ on CPF Board’s website via Singpass to view your coverage status under the ‘Health insurance’ section."
+            "quote": "What is co -insurance?"
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote8",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "id": "5f47555dMinistry2024 pages 17-22 quote1",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                17,
+                18,
+                19,
+                20,
+                21,
+                22
+            ],
+            "quote": "The deductible is the fixed amount that you need to pay before MediShield Life payout starts."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 17-22 quote3",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
+            "pages": [
+                17,
+                18,
+                19,
+                20,
+                21,
+                22
+            ],
+            "quote": "Co-insurance is the percentage of the claimable amount that you need to pay."
+        },
+        {
+            "id": "5f47555dMinistry2024 pages 1-5 quote9",
+            "filepath": "MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"Information Booklet For The NewlyInsured.\" (2024): 1-27.",
             "pages": [
                 1,
                 2,
@@ -122,24 +266,12 @@
                 4,
                 5
             ],
-            "quote": "The decision to purchase an Integrated Shield Plan depends on your individual healthcare needs, budget and preferences."
+            "quote": "What is an Integrated Shield Plan?"
         },
         {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote9",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
-            "pages": [
-                1,
-                2,
-                3,
-                4,
-                5
-            ]
-        },
-        {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote2",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "id": "5f47555dMinistry2025 pages 1-5 quote1",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan (Jan 2025).pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2025): 1-5.",
             "pages": [
                 1,
                 2,
@@ -147,19 +279,7 @@
                 4,
                 5
             ],
-            "quote": "They are made up of two components: MediShield Life component offered by CPF Board sized for Class B2/C bills in public hospitals; and Additional private insurance component offered by a private insurer targeted at covering higher ward classes or private hospitals."
-        },
-        {
-            "id": "bb3bc5b3Ministry2024 pages 1-5 quote10",
-            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
-            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
-            "pages": [
-                1,
-                2,
-                3,
-                4,
-                5
-            ]
+            "quote": "Integrated Shield Plan IP is a private medical insurance plan, offered by private insurers, that provides you with additional coverage on top of what you already have under MediShield Life."
         }
     ],
     "suggestedResponses": [
