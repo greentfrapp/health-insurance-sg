@@ -24,10 +24,16 @@
                 </div>
               </div>
             </div>
-            <div
-              v-if="store.streamBuffer"
-              class="border rounded-lg text-sm px-4 py-2 text-neutral-700 bg-neutral-100 max-w-full max-h-[200px] overflow-y-auto overflow-x-hidden">
-              {{ store.streamBuffer }}
+            <div v-if="store.streamingResponse" class="flex flex-col gap-2">
+              <div
+                class="border rounded-lg text-sm px-4 py-2 text-neutral-700 bg-neutral-100 animate-pulse">
+                Thinking...
+              </div>
+              <div
+                v-if="store.streamBuffer"
+                class="border rounded-lg text-sm px-4 py-2 text-neutral-700 bg-neutral-100 max-w-full max-h-[200px] overflow-y-auto overflow-x-hidden">
+                {{ store.streamBuffer }}
+              </div>
             </div>
             <ErrorMessage v-else-if="store.apiError">
               {{ store.apiError }}
