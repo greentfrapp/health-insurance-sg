@@ -1,0 +1,169 @@
+{
+    "question": "What is MediShield Life?",
+    "text": "MediShield Life is a basic health insurance plan for all Singapore Citizens and Permanent Residents, protecting against large medical bills regardless of age or pre-existing conditions <cite> <doc>bb3bc5b3Ministry2024 pages 1-3 quote1</doc> <doc>bb3bc5b3Ministry2024 pages 1-5 quote1</doc></cite>.  Even with pre-existing conditions, coverage is provided, though an additional premium may apply for the first ten years <cite> <doc>bb3bc5b3Ministry2024 pages 1-3 quote2</doc><doc>bb3bc5b3Ministry2024 pages 1-3 quote3</doc></cite>.  MediSave funds can be used to pay premiums, including any additional amounts <cite> <doc>bb3bc5b3Ministry2024 pages 1-3 quote4</doc></cite>.\n\nThis basic plan covers hospitalizations and selected outpatient treatments <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote3</doc></cite>.  While it covers both subsidized and non-subsidized treatments, the latter will have a smaller portion covered <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote4</doc><doc>bb3bc5b3Ministry2024 pages 1-5 quote5</doc></cite>.  Claims involve deductibles and co-insurance <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote7</doc><doc>bb3bc5b3Ministry2024 pages 1-5 quote8</doc></cite>.  To enhance coverage, Integrated Shield Plans (IPs) can supplement MediShield Life <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote9</doc></cite>.  The government provides subsidies to keep premiums affordable <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote2</doc></cite>.  No one loses coverage due to inability to pay premiums <cite> <doc>bb3bc5b3Ministry2024 pages 1-5 quote10</doc></cite>.",
+    "references": [
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-3 quote1",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2024): 1-7.",
+            "pages": [
+                1,
+                2,
+                3
+            ],
+            "quote": "Why are there changes to cancer treatment financing?"
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote1",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "Integrated Shield Plan IP is a private medical insurance plan, offered by private insurers, that provides you with additional coverage on top of what you already have under MediShield Life."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-3 quote2",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2024): 1-7.",
+            "pages": [
+                1,
+                2,
+                3
+            ],
+            "quote": "MediShield Life and MediSave will only cover treatments on the Cancer Drug List CDL from 1 September 2022."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-3 quote3",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2024): 1-7.",
+            "pages": [
+                1,
+                2,
+                3
+            ],
+            "quote": "The CDL will only come into effect for Integrated Shield Plans (IPs) on 1 Apr 2023, upon renewal or application."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-3 quote4",
+            "filepath": "MOH/MediShield Life/FAQs on cancer treatment financing (Nov 2024).pdf",
+            "citation": "Ministry of Health, \"FAQs on cancer treatment financing.\" (2024): 1-7.",
+            "pages": [
+                1,
+                2,
+                3
+            ],
+            "quote": "We encourage you to discuss with your doctor if there are suitable alternatives on the Cancer Drug List CDL that are subsidised and covered by insurance."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote3",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "MediShield Life is included in all Integrated Shield Plans."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote4",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "The private insurer you have taken the plan out with acts as your single point of contact."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote5",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "The MediShield Life component of your Integrated Shield Plan is fully payable by MediSave."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote7",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "To check if you already have an Integrated Shield Plan, you can log in to the Healthcare dashboard ↗ on CPF Board’s website via Singpass to view your coverage status under the ‘Health insurance’ section."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote8",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "The decision to purchase an Integrated Shield Plan depends on your individual healthcare needs, budget and preferences."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote9",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote2",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "quote": "They are made up of two components: MediShield Life component offered by CPF Board sized for Class B2/C bills in public hospitals; and Additional private insurance component offered by a private insurer targeted at covering higher ward classes or private hospitals."
+        },
+        {
+            "id": "bb3bc5b3Ministry2024 pages 1-5 quote10",
+            "filepath": "MOH/ISPs/About Integrated Shield Plan.pdf",
+            "citation": "Ministry of Health, \"About Integrated Shield Plan.\" (2024): 1-5.",
+            "pages": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    ],
+    "suggestedResponses": [
+        "How does MediShield Life differ from Integrated Shield Plans?",
+        "What are the premiums for MediShield Life?"
+    ]
+}

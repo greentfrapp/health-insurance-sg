@@ -17,12 +17,32 @@
         seven insurance companies.
       </p>
       <p>
-        We built this free app to make understanding Singapore's MediShield Life
-        and ISPs easier. Select the company you are interested in, and ask
-        questions about its insurance policies. This app will search and
-        synthesize information across brochures, product summaries, and premium
-        tables for you. Think of it as a supercharged insurance agent—helpful,
-        knowledgeable, and not selling you anything.
+        We built this free app to make understanding Singapore's
+        <button
+          @click="
+            loadDocument(
+              'MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf',
+            )
+          "
+          class="underline">
+          MediShield Life and ISPs
+        </button>
+        easier.
+        <router-link to="/" class="underline"
+          >Select the company you are interested in</router-link
+        >, or start with
+        <button
+          @click="
+            loadDocument(
+              'MOH/MediShield Life/Information Booklet For The NewlyInsured (Nov 2024).pdf',
+            )
+          "
+          class="underline">
+          MediShield Life</button
+        >, and ask questions about its insurance policies. This app will search
+        and synthesize information across brochures, product summaries, and
+        premium tables for you. Think of it as a supercharged insurance
+        agent—helpful, knowledgeable, and not selling you anything.
       </p>
       <p>We hope this app helps you in your healthcare journey.</p>
       <p>Swee Kiat & Alfred</p>
@@ -47,11 +67,18 @@
 </template>
 <script setup lang="ts">
 import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { useRouter } from 'vue-router'
 import { useStore } from '@/utils/store'
 
 const store = useStore()
 
 function closeMessage() {
   store.showOnboardingMessage = false
+}
+
+const router = useRouter()
+function loadDocument(document: string) {
+  store.openDocument(document)
+  router.push('app')
 }
 </script>
